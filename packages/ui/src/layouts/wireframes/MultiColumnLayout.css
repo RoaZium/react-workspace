@@ -1,0 +1,51 @@
+.wireframe-multicolumn {
+  display: grid;
+  width: 100%;
+  height: 100%;
+}
+
+.wireframe-multicolumn--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.wireframe-multicolumn--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.wireframe-multicolumn--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.wireframe-multicolumn--gap-small {
+  gap: 0.75rem;
+}
+
+.wireframe-multicolumn--gap-medium {
+  gap: 1.5rem;
+}
+
+.wireframe-multicolumn--gap-large {
+  gap: 2rem;
+}
+
+.wireframe-column {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .wireframe-multicolumn--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .wireframe-multicolumn--3,
+  .wireframe-multicolumn--4 {
+    grid-template-columns: 1fr;
+  }
+}

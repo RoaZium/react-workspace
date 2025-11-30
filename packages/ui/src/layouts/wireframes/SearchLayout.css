@@ -1,0 +1,54 @@
+.wireframe-search {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.wireframe-search--gap-small {
+  gap: 8px;
+}
+
+.wireframe-search--gap-medium {
+  gap: 16px;
+}
+
+.wireframe-search--gap-large {
+  gap: 24px;
+}
+
+.wireframe-search-condition {
+  background-color: #f5f5f5;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  flex-shrink: 0;
+}
+
+.wireframe-search-condition::before {
+  content: '조건 조회 영역';
+  display: block;
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.wireframe-search-result {
+  background-color: #fafafa;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.wireframe-search-result::before {
+  content: '조회 결과 영역';
+  display: block;
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 12px;
+  font-weight: 500;
+}

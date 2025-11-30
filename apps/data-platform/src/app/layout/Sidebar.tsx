@@ -36,6 +36,42 @@ export function Sidebar() {
         >
           ✅ Quality
         </NavLink>
+        <NavLink
+          to="/layout/basic"
+          className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
+        >
+          📄 Basic
+        </NavLink>
+        <NavLink
+          to="/layout/2column"
+          className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
+        >
+          ⚌ 2 Column
+        </NavLink>
+        <NavLink
+          to="/layout/3column"
+          className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
+        >
+          ⚏ 3 Column
+        </NavLink>
+        <NavLink
+          to="/layout/4column"
+          className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
+        >
+          ⚏ 4 Column
+        </NavLink>
+        <NavLink
+          to="/layout/3rows"
+          className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
+        >
+          ☰ 3 Rows
+        </NavLink>
+        <NavLink
+          to="/layout/search"
+          className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
+        >
+          🔍 Search
+        </NavLink>
       </nav>
     </aside>
   )

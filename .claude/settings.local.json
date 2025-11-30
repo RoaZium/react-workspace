@@ -10,7 +10,9 @@
       "Bash(git rm:*)",
       "Bash(git rev-list:*)",
       "Bash(git cat-file:*)",
-      "Bash(sort:*)"
+      "Bash(sort:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []
