@@ -26,7 +26,7 @@ export function MultiColumnLayout({
 }
 
 interface ColumnProps {
-  children: ReactNode
+  children?: ReactNode
   span?: number
   className?: string
 }

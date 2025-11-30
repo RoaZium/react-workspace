@@ -14,7 +14,7 @@ export function BasicLayout({ children }: BasicLayoutProps) {
 }
 
 interface BasicSectionProps {
-  children: ReactNode
+  children?: ReactNode
   className?: string
 }
 
