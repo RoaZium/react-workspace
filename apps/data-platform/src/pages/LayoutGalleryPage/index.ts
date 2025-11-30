@@ -1,0 +1,1 @@
+export { LayoutGalleryPage } from './LayoutGalleryPage'

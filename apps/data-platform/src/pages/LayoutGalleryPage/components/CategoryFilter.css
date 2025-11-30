@@ -1,0 +1,93 @@
+.category-filter {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 2rem;
+}
+
+.category-filter__label {
+  font-weight: 700;
+  color: #1f2937;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.category-filter__buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.category-filter__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  color: #6b7280;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.category-filter__btn:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.category-filter__btn.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border-color: #3b82f6;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.25);
+}
+
+.category-filter__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.category-filter__name {
+  line-height: 1;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .category-filter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .category-filter__label {
+    text-align: center;
+  }
+
+  .category-filter__buttons {
+    justify-content: center;
+  }
+
+  .category-filter__btn {
+    flex: 1;
+    min-width: calc(50% - 0.375rem);
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-filter__btn {
+    min-width: 100%;
+  }
+}

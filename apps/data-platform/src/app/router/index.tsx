@@ -5,6 +5,7 @@ import { DatasourcePage } from '@/pages/DatasourcePage'
 import { PipelinePage } from '@/pages/PipelinePage'
 import { CatalogPage } from '@/pages/CatalogPage'
 import { QualityPage } from '@/pages/QualityPage'
+import { LayoutGalleryPage } from '@/pages/LayoutGalleryPage'
 import {
   BasicLayoutPage,
   TwoColumnLayoutPage,
@@ -40,27 +41,31 @@ const router = createBrowserRouter([
         element: <QualityPage />,
       },
       {
-        path: 'layout/basic',
+        path: 'layouts',
+        element: <LayoutGalleryPage />,
+      },
+      {
+        path: 'layouts/basic',
         element: <BasicLayoutPage />,
       },
       {
-        path: 'layout/2column',
+        path: 'layouts/2column',
         element: <TwoColumnLayoutPage />,
       },
       {
-        path: 'layout/3column',
+        path: 'layouts/3column',
         element: <ThreeColumnLayoutPage />,
       },
       {
-        path: 'layout/4column',
+        path: 'layouts/4column',
         element: <FourColumnLayoutPage />,
       },
       {
-        path: 'layout/3rows',
+        path: 'layouts/3rows',
         element: <ThreeRowsLayoutPage />,
       },
       {
-        path: 'layout/search',
+        path: 'layouts/search',
         element: <SearchLayoutPage />,
       },
     ],

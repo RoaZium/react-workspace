@@ -13,6 +13,7 @@ export function Header() {
         <Link to="/pipeline" className="nav-link">Pipeline</Link>
         <Link to="/catalog" className="nav-link">Catalog</Link>
         <Link to="/quality" className="nav-link">Quality</Link>
+        <Link to="/layouts" className="nav-link">Layouts</Link>
       </nav>
       <div className="header-right">
         <span className="user-info">Admin</span>
