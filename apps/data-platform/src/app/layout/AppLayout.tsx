@@ -1,18 +1,25 @@
+import { Box, Toolbar } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 import { Header } from './Header'
 import { Sidebar } from './Sidebar'
-import './AppLayout.css'
 
 export function AppLayout() {
   return (
-    <div className="app-layout">
+    <Box sx={{ display: 'flex' }}>
       <Header />
-      <div className="app-content">
-        <Sidebar />
-        <main className="main-content">
-          <Outlet />
-        </main>
-      </div>
-    </div>
+      <Sidebar />
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          bgcolor: 'background.default',
+          p: 3,
+          minHeight: '100vh',
+        }}
+      >
+        <Toolbar />
+        <Outlet />
+      </Box>
+    </Box>
   )
 }

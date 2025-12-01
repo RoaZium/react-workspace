@@ -1,139 +1,73 @@
-import { NavLink, useLocation } from 'react-router-dom'
-import './Sidebar.css'
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Toolbar, Box } from '@mui/material'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { sidebarMenus } from './navigation.config'
+
+const DRAWER_WIDTH = 240
 
 export function Sidebar() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   // 현재 어떤 섹션인지 판단
   const currentSection = location.pathname.split('/')[1] || 'dashboard'
+  const currentMenuItems = sidebarMenus[currentSection] || []
+
+  const isActive = (path: string) => {
+    if (path === '/' && currentSection === 'dashboard') {
+      return location.pathname === '/'
+    }
+    return location.pathname === path
+  }
 
   return (
-    <aside className="sidebar">
-      <nav className="sidebar-nav">
-        {/* 홈 링크 - 항상 표시 */}
-        <NavLink
-          to="/"
-          className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-        >
-          Home
-        </NavLink>
+    <Drawer
+      variant="permanent"
+      sx={{
+        width: DRAWER_WIDTH,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: DRAWER_WIDTH,
+          boxSizing: 'border-box',
+        },
+      }}
+    >
+      <Toolbar />
+      <Box sx={{ overflow: 'auto' }}>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton
+              selected={location.pathname === '/'}
+              onClick={() => navigate('/')}
+            >
+              <ListItemText primary="Home" />
+            </ListItemButton>
+          </ListItem>
+        </List>
 
-        <div className="sidebar-divider" />
+        <Divider />
 
-        {/* 레이아웃 섹션 서브메뉴 */}
-        {currentSection === 'layouts' && (
-          <>
-            <NavLink
-              to="/layouts"
-              end
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              레이아웃 홈
-            </NavLink>
-            <NavLink
-              to="/layouts/basic"
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              기본 레이아웃
-            </NavLink>
-            <NavLink
-              to="/layouts/2column"
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              2단 컬럼
-            </NavLink>
-            <NavLink
-              to="/layouts/3column"
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              3단 컬럼
-            </NavLink>
-            <NavLink
-              to="/layouts/4column"
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              4단 컬럼
-            </NavLink>
-            <NavLink
-              to="/layouts/3rows"
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              3단 행
-            </NavLink>
-            <NavLink
-              to="/layouts/search"
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              검색 레이아웃
-            </NavLink>
-          </>
-        )}
-
-        {/* Dashboard 섹션 서브메뉴 */}
-        {currentSection === 'dashboard' && (
-          <>
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              Dashboard Home
-            </NavLink>
-          </>
-        )}
-
-        {/* Datasource 섹션 서브메뉴 */}
-        {currentSection === 'datasource' && (
-          <>
-            <NavLink
-              to="/datasource"
-              end
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              Datasource Home
-            </NavLink>
-          </>
-        )}
-
-        {/* Pipeline 섹션 서브메뉴 */}
-        {currentSection === 'pipeline' && (
-          <>
-            <NavLink
-              to="/pipeline"
-              end
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              Pipeline Home
-            </NavLink>
-          </>
-        )}
-
-        {/* Catalog 섹션 서브메뉴 */}
-        {currentSection === 'catalog' && (
-          <>
-            <NavLink
-              to="/catalog"
-              end
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              Catalog Home
-            </NavLink>
-          </>
-        )}
-
-        {/* Quality 섹션 서브메뉴 */}
-        {currentSection === 'quality' && (
-          <>
-            <NavLink
-              to="/quality"
-              end
-              className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
-            >
-              Quality Home
-            </NavLink>
-          </>
-        )}
-      </nav>
-    </aside>
+        <List>
+          {currentMenuItems.map((item) => (
+            <ListItem key={item.path} disablePadding>
+              <ListItemButton
+                selected={isActive(item.path)}
+                onClick={() => navigate(item.path)}
+                sx={{
+                  '&.Mui-selected': {
+                    backgroundColor: 'primary.light',
+                    color: 'primary.main',
+                    '&:hover': {
+                      backgroundColor: 'primary.light',
+                    },
+                  },
+                }}
+              >
+                <ListItemText primary={item.label} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+    </Drawer>
   )
 }
