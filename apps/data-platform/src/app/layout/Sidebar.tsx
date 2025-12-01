@@ -39,7 +39,7 @@ export function Sidebar() {
               selected={location.pathname === '/'}
               onClick={() => navigate('/')}
             >
-              <ListItemText primary="Home" />
+              <ListItemText primary="홈" />
             </ListItemButton>
           </ListItem>
         </List>

@@ -22,12 +22,12 @@ export interface SidebarSection {
 
 // 상단 네비게이션 메뉴 항목
 export const topNavItems: NavItem[] = [
-  { label: 'Dashboard', path: '/', icon: <DashboardIcon /> },
-  { label: 'Datasource', path: '/datasource', icon: <StorageIcon /> },
-  { label: 'Pipeline', path: '/pipeline', icon: <AccountTreeIcon /> },
-  { label: 'Catalog', path: '/catalog', icon: <LibraryBooksIcon /> },
-  { label: 'Quality', path: '/quality', icon: <VerifiedIcon /> },
-  { label: 'Layouts', path: '/layouts', icon: <ViewQuiltIcon /> },
+  { label: '대시보드', path: '/', icon: <DashboardIcon /> },
+  { label: '데이터소스', path: '/datasource', icon: <StorageIcon /> },
+  { label: '파이프라인', path: '/pipeline', icon: <AccountTreeIcon /> },
+  { label: '카탈로그', path: '/catalog', icon: <LibraryBooksIcon /> },
+  { label: '품질관리', path: '/quality', icon: <VerifiedIcon /> },
+  { label: '레이아웃', path: '/layouts', icon: <ViewQuiltIcon /> },
 ]
 
 // 사이드바 메뉴 항목 (섹션별)
@@ -42,19 +42,19 @@ export const sidebarMenus: Record<string, NavItem[]> = {
     { label: '검색 레이아웃', path: '/layouts/search', icon: <SearchIcon /> },
   ],
   dashboard: [
-    { label: 'Dashboard Home', path: '/', icon: <DashboardIcon /> },
+    { label: '대시보드 홈', path: '/', icon: <DashboardIcon /> },
   ],
   datasource: [
-    { label: 'Datasource Home', path: '/datasource', icon: <StorageIcon /> },
+    { label: '데이터소스 홈', path: '/datasource', icon: <StorageIcon /> },
   ],
   pipeline: [
-    { label: 'Pipeline Home', path: '/pipeline', icon: <AccountTreeIcon /> },
+    { label: '파이프라인 홈', path: '/pipeline', icon: <AccountTreeIcon /> },
   ],
   catalog: [
-    { label: 'Catalog Home', path: '/catalog', icon: <LibraryBooksIcon /> },
+    { label: '카탈로그 홈', path: '/catalog', icon: <LibraryBooksIcon /> },
   ],
   quality: [
-    { label: 'Quality Home', path: '/quality', icon: <VerifiedIcon /> },
+    { label: '품질관리 홈', path: '/quality', icon: <VerifiedIcon /> },
   ],
 }
 

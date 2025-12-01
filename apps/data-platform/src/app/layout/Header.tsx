@@ -35,7 +35,7 @@ export function Header() {
           }}
         >
           <StorageIcon />
-          Data Platform
+          데이터 플랫폼
         </Typography>
 
         <Box sx={{ flexGrow: 1, display: 'flex', gap: 1 }}>
@@ -61,10 +61,10 @@ export function Header() {
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Typography variant="body2" sx={{ color: 'white' }}>
-            Admin
+            관리자
           </Typography>
           <IconButton sx={{ p: 0 }}>
-            <Avatar sx={{ width: 32, height: 32, bgcolor: 'secondary.main' }}>A</Avatar>
+            <Avatar sx={{ width: 32, height: 32, bgcolor: 'secondary.main' }}>관</Avatar>
           </IconButton>
         </Box>
       </Toolbar>
