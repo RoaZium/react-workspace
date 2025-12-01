@@ -12,7 +12,8 @@
       "Bash(git cat-file:*)",
       "Bash(sort:*)",
       "Bash(npx tsc:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []

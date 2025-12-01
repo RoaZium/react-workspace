@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { PageLayout, PageHeader, PageContent, SplitLayout, Card, Button, Table } from '@workspace/ui'
-import './DatasourcePage.css'
+import './DataHubPage.css'
 
 const mockDatasources = [
   { id: 1, name: 'MySQL Production', type: 'MySQL', status: 'Connected', lastSync: '2분 전' },
@@ -9,7 +9,7 @@ const mockDatasources = [
   { id: 4, name: 'S3 Data Lake', type: 'S3', status: 'Connected', lastSync: '10분 전' },
 ]
 
-export function DatasourcePage() {
+export function DataHubPage() {
   const [selected, setSelected] = useState(mockDatasources[0])
 
   const columns = [
@@ -31,12 +31,12 @@ export function DatasourcePage() {
   return (
     <PageLayout>
       <PageHeader
-        title="Datasource Management"
-        description="데이터 소스를 관리하고 연결 상태를 모니터링하세요"
+        title="Data Hub Management"
+        description="데이터 허브를 관리하고 연결 상태를 모니터링하세요"
         actions={
           <>
             <Button variant="secondary" size="medium">Import</Button>
-            <Button variant="primary" size="medium">Add Datasource</Button>
+            <Button variant="primary" size="medium">Add Data Hub</Button>
           </>
         }
       />

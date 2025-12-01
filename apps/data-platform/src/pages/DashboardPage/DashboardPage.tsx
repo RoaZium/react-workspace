@@ -14,7 +14,7 @@ export function DashboardPage() {
           <StatCard
             icon="🗄️"
             value="24"
-            label="Active Datasources"
+            label="Active Data Hubs"
             trend={{ value: '+3', isPositive: true }}
           />
           <StatCard
@@ -46,7 +46,7 @@ export function DashboardPage() {
             </div>
             <div className="activity-item">
               <span className="activity-time">15분 전</span>
-              <span className="activity-text">Datasource "MySQL Production" 연결 성공</span>
+              <span className="activity-text">Data Hub "MySQL Production" 연결 성공</span>
             </div>
             <div className="activity-item">
               <span className="activity-time">1시간 전</span>

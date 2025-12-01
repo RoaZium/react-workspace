@@ -23,7 +23,7 @@ export interface SidebarSection {
 // 상단 네비게이션 메뉴 항목
 export const topNavItems: NavItem[] = [
   { label: '대시보드', path: '/', icon: <DashboardIcon /> },
-  { label: '데이터소스', path: '/datasource', icon: <StorageIcon /> },
+  { label: '데이터 허브', path: '/datahub', icon: <StorageIcon /> },
   { label: '파이프라인', path: '/pipeline', icon: <AccountTreeIcon /> },
   { label: '카탈로그', path: '/catalog', icon: <LibraryBooksIcon /> },
   { label: '품질관리', path: '/quality', icon: <VerifiedIcon /> },
@@ -44,8 +44,8 @@ export const sidebarMenus: Record<string, NavItem[]> = {
   dashboard: [
     { label: '대시보드 홈', path: '/', icon: <DashboardIcon /> },
   ],
-  datasource: [
-    { label: '데이터소스 홈', path: '/datasource', icon: <StorageIcon /> },
+  datahub: [
+    { label: '데이터 허브 홈', path: '/datahub', icon: <StorageIcon /> },
   ],
   pipeline: [
     { label: '파이프라인 홈', path: '/pipeline', icon: <AccountTreeIcon /> },
