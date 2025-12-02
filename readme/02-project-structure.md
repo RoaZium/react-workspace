@@ -303,6 +303,121 @@ my-react-app/
 ```
 - **이점**: 명확한 책임 분리, 확장성, 재사용성, 유지보수성, 협업 용이성
 
+#### 3.5 실제 구현 예시 (data-platform)
+
+**widgets와 features를 제거한 심플한 FSD 구조 예시:**
+
+```
+apps/data-platform/src/
+├── app/                          # 전역 설정
+│   ├── layout/
+│   │   └── navigation.config.tsx # 도메인 중심 네비게이션
+│   ├── providers/
+│   │   └── QueryProvider.tsx
+│   └── router/
+│       └── index.tsx
+├── pages/                        # 라우팅 페이지 (조합만 담당)
+│   └── DataHubPage/
+│       ├── DataHubPage.tsx      # entities 컴포넌트 조합
+│       ├── DataHubPage.css
+│       └── index.ts
+├── entities/                     # 도메인 엔티티 (FSD 핵심)
+│   ├── data-source/
+│   │   ├── model/
+│   │   │   ├── types.ts         # 타입 정의
+│   │   │   └── index.ts
+│   │   ├── api/
+│   │   │   ├── queries.ts       # React Query (useDataSources)
+│   │   │   ├── mutations.ts     # CRUD mutations
+│   │   │   └── index.ts
+│   │   ├── ui/
+│   │   │   ├── DataSourceTable.tsx  # 재사용 가능한 UI
+│   │   │   └── index.ts
+│   │   └── index.ts             # 전체 export
+│   ├── category/
+│   │   ├── model/types.ts
+│   │   ├── api/
+│   │   │   ├── queries.ts       # useCategoriesByDataSource
+│   │   │   └── mutations.ts
+│   │   ├── ui/CategoryTable.tsx
+│   │   └── index.ts
+│   └── resource/
+│       ├── model/types.ts
+│       ├── api/
+│       │   ├── queries.ts       # useResourcesByCategory
+│       │   └── mutations.ts
+│       ├── ui/
+│       │   ├── ResourceTable.tsx
+│       │   └── ResourceDetail.tsx
+│       └── index.ts
+└── shared/                       # 공통 리소스
+    ├── ui/
+    ├── lib/
+    └── config/
+```
+
+**코드 예시:**
+
+```typescript
+// entities/data-source/model/types.ts
+export interface DataSource {
+  internalId: number
+  publicId: string
+  code: string
+  name: string
+  isActive: boolean
+  // ...
+}
+
+// entities/data-source/api/queries.ts
+import { useQuery } from '@tanstack/react-query'
+
+export const useDataSources = () => {
+  return useQuery({
+    queryKey: ['data-sources'],
+    queryFn: async () => {
+      const response = await fetch('/api/data-sources')
+      return response.json() as Promise<DataSource[]>
+    },
+  })
+}
+
+// entities/data-source/ui/DataSourceTable.tsx
+import { Table } from '@workspace/ui'
+import type { DataSource } from '../model'
+
+export function DataSourceTable({ data, onRowClick }: Props) {
+  const columns = [
+    { key: 'name', header: '이름' },
+    { key: 'code', header: '코드' },
+  ]
+  return <Table data={data} columns={columns} onRowClick={onRowClick} />
+}
+
+// pages/DataHubPage/DataHubPage.tsx (조합만 담당)
+import { useDataSources, DataSourceTable } from '@/entities/data-source'
+import { useCategoriesByDataSource, CategoryTable } from '@/entities/category'
+
+export function DataHubPage() {
+  const [selected, setSelected] = useState(null)
+  const { data: dataSources } = useDataSources()
+  const { data: categories } = useCategoriesByDataSource(selected?.id)
+
+  return (
+    <PageLayout>
+      <DataSourceTable data={dataSources} onRowClick={setSelected} />
+      <CategoryTable data={categories} />
+    </PageLayout>
+  )
+}
+```
+
+**FSD 원칙 준수 포인트:**
+1. ✅ **entities**: 도메인 중심 (model + api + ui)
+2. ✅ **pages**: 조합만 담당 (비즈니스 로직 없음)
+3. ✅ **계층 의존성**: pages → entities → shared
+4. ✅ **재사용성**: entities의 ui 컴포넌트는 여러 페이지에서 재사용 가능
+
 ### 4. 주요 라이브러리 및 도구
 
 #### 4.1 상태 관리
