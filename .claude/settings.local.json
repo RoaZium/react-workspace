@@ -20,7 +20,8 @@
       "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\providers\\MuiThemeProvider.tsx\")",
       "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\layout\\Header.tsx\")",
       "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\layout\\Sidebar.tsx\")",
-      "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\contexts\\SidebarContext.tsx\")"
+      "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\contexts\\SidebarContext.tsx\")",
+      "Bash(timeout 10 bash -c 'while ! netstat -an | findstr \"\"5173.*LISTENING\"\" > /dev/null 2>&1; do sleep 1; done')"
     ],
     "deny": [],
     "ask": []

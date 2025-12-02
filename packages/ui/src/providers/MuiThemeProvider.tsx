@@ -17,6 +17,9 @@ export function MuiThemeProvider({ children }: Props) {
       createTheme({
         palette: {
           mode: mode === 'dark' ? 'dark' : 'light',
+          primary: {
+            main: '#1976d2',
+          },
         },
         components: {
           MuiAppBar: {
@@ -24,9 +27,6 @@ export function MuiThemeProvider({ children }: Props) {
               root: {
                 backgroundImage: 'none',
               },
-            },
-            defaultProps: {
-              color: 'default',
             },
           },
           MuiCssBaseline: {

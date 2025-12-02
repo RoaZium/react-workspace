@@ -63,11 +63,8 @@ export function Header({ appTitle, topNavItems, username = '관리자', onLogout
   return (
     <AppBar
       position="fixed"
-      sx={{
-        zIndex: (theme) => theme.zIndex.drawer + 1,
-        borderBottom: 1,
-        borderColor: 'divider',
-      }}
+      enableColorOnDark
+      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
     >
       <Toolbar sx={{ gap: 2 }}>
         <IconButton
@@ -75,12 +72,6 @@ export function Header({ appTitle, topNavItems, username = '관리자', onLogout
           aria-label="toggle sidebar"
           onClick={toggleSidebar}
           edge="start"
-          sx={{
-            color: 'text.primary',
-            '&:hover': {
-              bgcolor: 'action.hover',
-            },
-          }}
         >
           <MenuIcon />
         </IconButton>
@@ -90,17 +81,10 @@ export function Header({ appTitle, topNavItems, username = '관리자', onLogout
           component={Link}
           to="/"
           sx={{
-            fontWeight: 700,
-            background:
-              theme === 'dark'
-                ? 'linear-gradient(45deg, #60a5fa 30%, #38bdf8 90%)'
-                : 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            color: 'inherit',
             textDecoration: 'none',
-            letterSpacing: '-0.5px',
+            flexGrow: 0,
             mr: 4,
-            transition: 'all 0.3s ease',
           }}
         >
           {appTitle}
@@ -112,19 +96,11 @@ export function Header({ appTitle, topNavItems, username = '관리자', onLogout
               key={item.path}
               component={Link}
               to={item.path}
+              color="inherit"
               sx={{
-                color: 'text.primary',
                 position: 'relative',
-                px: 2,
-                py: 1,
                 textTransform: 'none',
-                fontSize: '0.9375rem',
                 fontWeight: isActive(item.path) ? 600 : 500,
-                borderRadius: 1,
-                transition: 'all 0.2s ease',
-                '&:hover': {
-                  bgcolor: 'action.hover',
-                },
                 '&::after': isActive(item.path)
                   ? {
                       content: '""',
@@ -134,7 +110,7 @@ export function Header({ appTitle, topNavItems, username = '관리자', onLogout
                       transform: 'translateX(-50%)',
                       width: '70%',
                       height: 3,
-                      bgcolor: 'primary.main',
+                      bgcolor: 'currentColor',
                       borderRadius: '3px 3px 0 0',
                     }
                   : {},
@@ -147,30 +123,13 @@ export function Header({ appTitle, topNavItems, username = '관리자', onLogout
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Tooltip title={theme === 'light' ? 'Dark mode' : 'Light mode'}>
-            <IconButton
-              onClick={toggleTheme}
-              sx={{
-                color: 'text.primary',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  bgcolor: 'action.hover',
-                  transform: 'rotate(180deg)',
-                },
-              }}
-            >
+            <IconButton color="inherit" onClick={toggleTheme}>
               {theme === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
             </IconButton>
           </Tooltip>
 
           <Tooltip title="Notifications">
-            <IconButton
-              sx={{
-                color: 'text.primary',
-                '&:hover': {
-                  bgcolor: 'action.hover',
-                },
-              }}
-            >
+            <IconButton color="inherit">
               <Badge badgeContent={3} color="error">
                 <NotificationsIcon />
               </Badge>
@@ -180,28 +139,8 @@ export function Header({ appTitle, topNavItems, username = '관리자', onLogout
           <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
 
           <Tooltip title="Account">
-            <IconButton
-              onClick={handleMenuOpen}
-              sx={{
-                p: 0.5,
-                transition: 'all 0.2s ease',
-                '&:hover': {
-                  transform: 'scale(1.05)',
-                },
-              }}
-            >
-              <Avatar
-                sx={{
-                  width: 36,
-                  height: 36,
-                  bgcolor: 'primary.main',
-                  fontWeight: 600,
-                  fontSize: '0.875rem',
-                  border: 2,
-                  borderColor: open ? 'primary.main' : 'transparent',
-                  transition: 'all 0.2s ease',
-                }}
-              >
+            <IconButton onClick={handleMenuOpen} color="inherit">
+              <Avatar sx={{ width: 36, height: 36 }}>
                 {username.charAt(0)}
               </Avatar>
             </IconButton>
