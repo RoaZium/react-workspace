@@ -38,6 +38,17 @@ export function Sidebar() {
             <ListItemButton
               selected={location.pathname === '/'}
               onClick={() => navigate('/')}
+              sx={{
+                '&.Mui-selected': {
+                  backgroundColor: 'rgba(25, 118, 210, 0.08)',
+                  color: 'primary.main',
+                  borderLeft: '4px solid',
+                  borderColor: 'primary.main',
+                  '&:hover': {
+                    backgroundColor: 'rgba(25, 118, 210, 0.12)',
+                  },
+                },
+              }}
             >
               <ListItemText primary="홈" />
             </ListItemButton>
@@ -54,10 +65,12 @@ export function Sidebar() {
                 onClick={() => navigate(item.path)}
                 sx={{
                   '&.Mui-selected': {
-                    backgroundColor: 'primary.light',
+                    backgroundColor: 'rgba(25, 118, 210, 0.08)',
                     color: 'primary.main',
+                    borderLeft: '4px solid',
+                    borderColor: 'primary.main',
                     '&:hover': {
-                      backgroundColor: 'primary.light',
+                      backgroundColor: 'rgba(25, 118, 210, 0.12)',
                     },
                   },
                 }}
