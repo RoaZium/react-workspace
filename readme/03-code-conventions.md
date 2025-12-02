@@ -125,3 +125,408 @@ Displays user information.
 - `age`: number - User's age
 ```
 - **목적**: 프로젝트 이해도 향상, 협업 지원
+
+---
+
+## 5. 디자인 시스템 - 레이아웃 템플릿 컨벤션
+
+### 5.1 레이아웃 템플릿 사용 원칙
+
+**목적**: 메인 콘텐츠 영역의 일관된 구조 제공
+
+**기본 원칙**:
+- 모든 페이지는 `ContentLayout` 컴포넌트를 사용하여 영역 분할
+- 레이아웃 템플릿은 **구조만** 정의, 내부 콘텐츠는 자유
+- 전역 레이아웃(Header, Sidebar)은 앱 레벨에서 설정
+
+### 5.2 레이아웃 템플릿 타입 선택 가이드
+
+```typescript
+// 1. 비정형 페이지 (완전 자유 레이아웃)
+type: 'single'
+사용 케이스: 랜딩 페이지, 커스텀 디자인 페이지
+
+// 2. Master-Detail 패턴
+type: 'split-horizontal'
+사용 케이스: 사용자 관리, 메일 클라이언트, 설정 페이지
+
+// 3. 상하 분할
+type: 'split-vertical'
+사용 케이스: 에디터, 프리뷰 페이지
+
+// 4. 대시보드
+type: 'grid-2x2' | 'grid-3x3'
+사용 케이스: 대시보드, 통계 페이지, 모니터링 화면
+
+// 5. 3단 분할
+type: 'three-column'
+사용 케이스: 복잡한 데이터 표시, 다중 패널 인터페이스
+
+// 6. 사이드바 + 메인
+type: 'sidebar-content'
+사용 케이스: 필터가 있는 목록 페이지, 검색 결과
+```
+
+### 5.3 컴포넌트 명명 규칙
+
+**레이아웃 관련 컴포넌트**:
+```typescript
+// ✅ 권장
+<ContentLayout>          // 레이아웃 템플릿 선택
+<LayoutRegion>           // 분할된 영역
+
+// ❌ 사용 금지
+<MainLayout>             // 전역 레이아웃과 혼동
+<GridLayout>             // 너무 일반적
+<Container>              // 용도 불명확
+```
+
+### 5.4 Props 명명 규칙
+
+```typescript
+interface ContentLayoutProps {
+  type: LayoutType          // 레이아웃 타입 (필수)
+  ratio?: number[]          // 영역 비율 [3, 7]
+  gap?: number              // 영역 간격 (px)
+  children: React.ReactNode // 자식 컴포넌트
+}
+
+interface LayoutRegionProps {
+  name?: string             // 영역 식별자 (선택)
+  children: React.ReactNode
+}
+```
+
+### 5.5 파일 구조 컨벤션
+
+```
+packages/ui/src/layout/
+├─ ContentLayout.tsx       # 레이아웃 템플릿 메인 컴포넌트
+├─ LayoutRegion.tsx        # 영역 컴포넌트
+├─ types.ts                # 타입 정의
+├─ styles.ts               # 공통 스타일
+└─ index.ts                # Public API 내보내기
+```
+
+### 5.6 사용 예시 및 코드 스타일
+
+**Good Examples**:
+
+```typescript
+// ✅ 명확한 레이아웃 구조
+function UserManagementPage() {
+  return (
+    <ContentLayout type="split-horizontal" ratio={[3, 7]} gap={16}>
+      <LayoutRegion name="list">
+        <UserList />
+      </LayoutRegion>
+      <LayoutRegion name="detail">
+        <UserDetail />
+      </LayoutRegion>
+    </ContentLayout>
+  )
+}
+
+// ✅ 그리드 레이아웃 - 명확한 영역 이름
+function DashboardPage() {
+  return (
+    <ContentLayout type="grid-2x2" gap={24}>
+      <LayoutRegion name="statistics">
+        <StatisticsWidget />
+      </LayoutRegion>
+      <LayoutRegion name="chart">
+        <ChartWidget />
+      </LayoutRegion>
+      <LayoutRegion name="activity">
+        <RecentActivity />
+      </LayoutRegion>
+      <LayoutRegion name="tasks">
+        <TaskList />
+      </LayoutRegion>
+    </ContentLayout>
+  )
+}
+
+// ✅ 비정형 레이아웃
+function LandingPage() {
+  return (
+    <ContentLayout type="single">
+      <LayoutRegion>
+        <HeroSection />
+        <FeaturesSection />
+        <CTASection />
+      </LayoutRegion>
+    </ContentLayout>
+  )
+}
+```
+
+**Bad Examples**:
+
+```typescript
+// ❌ 레이아웃 없이 직접 구성
+function UserManagementPage() {
+  return (
+    <div style={{ display: 'flex' }}>
+      <div style={{ flex: 3 }}>
+        <UserList />
+      </div>
+      <div style={{ flex: 7 }}>
+        <UserDetail />
+      </div>
+    </div>
+  )
+}
+
+// ❌ 레이아웃 템플릿 미사용
+function DashboardPage() {
+  return (
+    <Grid container spacing={3}>
+      <Grid item xs={6}><Widget1 /></Grid>
+      <Grid item xs={6}><Widget2 /></Grid>
+      <Grid item xs={6}><Widget3 /></Grid>
+      <Grid item xs={6}><Widget4 /></Grid>
+    </Grid>
+  )
+}
+
+// ❌ 영역 이름 없음 (가독성 저하)
+function DataPage() {
+  return (
+    <ContentLayout type="split-horizontal">
+      <LayoutRegion>
+        <Component1 />
+      </LayoutRegion>
+      <LayoutRegion>
+        <Component2 />
+      </LayoutRegion>
+    </ContentLayout>
+  )
+}
+```
+
+### 5.7 Import 문 정리
+
+```typescript
+// ✅ 권장 import 순서
+// 1. React 및 내장 모듈
+import React from 'react'
+
+// 2. 외부 라이브러리
+import { Box } from '@mui/material'
+
+// 3. 공통 레이아웃 컴포넌트
+import { ContentLayout, LayoutRegion } from '@workspace/ui/layout'
+
+// 4. 로컬 컴포넌트
+import { UserList } from './UserList'
+import { UserDetail } from './UserDetail'
+```
+
+### 5.8 타입 정의 컨벤션
+
+```typescript
+// packages/ui/src/layout/types.ts
+
+/** 레이아웃 템플릿 타입 */
+export type LayoutType =
+  | 'single'              // 단일 영역
+  | 'split-horizontal'    // 좌우 분할
+  | 'split-vertical'      // 상하 분할
+  | 'grid-2x2'           // 2x2 그리드
+  | 'grid-3x3'           // 3x3 그리드
+  | 'three-column'       // 3단 분할
+  | 'sidebar-content'    // 사이드바 + 메인
+
+/** 레이아웃 Props */
+export interface ContentLayoutProps {
+  /** 레이아웃 타입 */
+  type: LayoutType
+  /** 영역 비율 (예: [3, 7]) */
+  ratio?: number[]
+  /** 영역 간격 (px) */
+  gap?: number
+  /** 자식 컴포넌트 */
+  children: React.ReactNode
+  /** CSS 클래스명 */
+  className?: string
+}
+
+/** 영역 Props */
+export interface LayoutRegionProps {
+  /** 영역 식별자 */
+  name?: string
+  /** 자식 컴포넌트 */
+  children: React.ReactNode
+  /** CSS 클래스명 */
+  className?: string
+}
+```
+
+### 5.9 스타일 컨벤션
+
+```typescript
+// ✅ Styled Components 사용
+import styled from 'styled-components'
+
+export const StyledContentLayout = styled.div<{ $gap?: number }>`
+  display: grid;
+  gap: ${props => props.$gap || 16}px;
+  width: 100%;
+  height: 100%;
+`
+
+export const StyledLayoutRegion = styled.div`
+  overflow: auto;
+  background: var(--color-background);
+  border-radius: var(--border-radius);
+`
+
+// ❌ 인라인 스타일 지양
+<div style={{ display: 'grid', gap: '16px' }}>
+```
+
+### 5.10 접근성 (Accessibility) 가이드
+
+```typescript
+// ✅ semantic HTML 및 ARIA 속성 사용
+function ContentLayout({ type, children }: ContentLayoutProps) {
+  return (
+    <main role="main" aria-label="Main Content">
+      <div data-layout-type={type}>
+        {children}
+      </div>
+    </main>
+  )
+}
+
+function LayoutRegion({ name, children }: LayoutRegionProps) {
+  return (
+    <section aria-label={name}>
+      {children}
+    </section>
+  )
+}
+```
+
+### 5.11 테스트 컨벤션
+
+```typescript
+// ContentLayout.test.tsx
+import { render, screen } from '@testing-library/react'
+import { ContentLayout, LayoutRegion } from './ContentLayout'
+
+describe('ContentLayout', () => {
+  it('should render split-horizontal layout', () => {
+    render(
+      <ContentLayout type="split-horizontal">
+        <LayoutRegion name="left">Left Content</LayoutRegion>
+        <LayoutRegion name="right">Right Content</LayoutRegion>
+      </ContentLayout>
+    )
+
+    expect(screen.getByText('Left Content')).toBeInTheDocument()
+    expect(screen.getByText('Right Content')).toBeInTheDocument()
+  })
+
+  it('should apply gap prop', () => {
+    const { container } = render(
+      <ContentLayout type="grid-2x2" gap={24}>
+        <LayoutRegion>Content</LayoutRegion>
+      </ContentLayout>
+    )
+
+    expect(container.firstChild).toHaveStyle({ gap: '24px' })
+  })
+})
+```
+
+### 5.12 문서화 규칙
+
+**컴포넌트 README 작성**:
+
+```markdown
+# ContentLayout
+
+메인 콘텐츠 영역의 레이아웃 템플릿을 제공하는 컴포넌트
+
+## Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| type | LayoutType | Yes | - | 레이아웃 타입 |
+| ratio | number[] | No | - | 영역 비율 |
+| gap | number | No | 16 | 영역 간격(px) |
+| children | ReactNode | Yes | - | 자식 컴포넌트 |
+
+## Usage
+
+\`\`\`typescript
+<ContentLayout type="split-horizontal" ratio={[3, 7]} gap={16}>
+  <LayoutRegion name="list">
+    <UserList />
+  </LayoutRegion>
+  <LayoutRegion name="detail">
+    <UserDetail />
+  </LayoutRegion>
+</ContentLayout>
+\`\`\`
+
+## Layout Types
+
+- `single`: 단일 영역 (자유 레이아웃)
+- `split-horizontal`: 좌우 분할
+- `split-vertical`: 상하 분할
+- `grid-2x2`: 2x2 그리드
+- `grid-3x3`: 3x3 그리드
+- `three-column`: 3단 분할
+- `sidebar-content`: 사이드바 + 메인
+```
+
+### 5.13 마이그레이션 가이드
+
+**기존 코드를 레이아웃 템플릿으로 변환**:
+
+```typescript
+// Before (기존 방식)
+function OldPage() {
+  return (
+    <div className="page-container">
+      <div className="left-panel">
+        <UserList />
+      </div>
+      <div className="right-panel">
+        <UserDetail />
+      </div>
+    </div>
+  )
+}
+
+// After (레이아웃 템플릿 사용)
+function NewPage() {
+  return (
+    <ContentLayout type="split-horizontal" ratio={[3, 7]}>
+      <LayoutRegion name="list">
+        <UserList />
+      </LayoutRegion>
+      <LayoutRegion name="detail">
+        <UserDetail />
+      </LayoutRegion>
+    </ContentLayout>
+  )
+}
+```
+
+### 5.14 베스트 프랙티스
+
+**✅ Do**:
+- 모든 페이지에 `ContentLayout` 사용
+- 영역 이름(`name` prop) 명시적으로 지정
+- 레이아웃 타입은 페이지 용도에 맞게 선택
+- `gap` prop으로 일관된 간격 유지
+
+**❌ Don't**:
+- 레이아웃 템플릿 없이 직접 스타일링
+- 중첩된 `ContentLayout` 사용
+- 레이아웃 내부에서 전역 레이아웃 변경
+- 과도한 커스터마이징 (템플릿이 맞지 않으면 `single` 타입 사용)

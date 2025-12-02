@@ -702,6 +702,162 @@ export default App;
 
 ---
 
+## 4.9 디자인 시스템 - 레이아웃 템플릿
+
+### 개념
+
+**레이아웃 템플릿**은 디자인 시스템의 핵심 구성 요소로, 메인 콘텐츠 영역의 **정형화된 영역 분할 구조**를 제공합니다.
+
+### 목적
+
+- **일관성**: 모든 페이지에서 동일한 레이아웃 패턴 적용
+- **효율성**: 개발자는 레이아웃 템플릿 선택만으로 구조 완성
+- **유연성**: 각 영역 내 컴포넌트는 자유롭게 구성
+
+### 전체 구조
+
+```
+애플리케이션
+├─ Header (전역, 고정)
+├─ Sidebar (전역, 고정)
+└─ MainContent (페이지별 변경)
+    └─ ContentLayout (레이아웃 템플릿) ← 영역 분할 도구
+        └─ 각 영역에 컴포넌트 배치
+```
+
+### 레이아웃 템플릿 종류
+
+```typescript
+// 1. 단일 영역 (비정형/자유 레이아웃)
+type: 'single'
+┌─────────────────────┐
+│                     │
+│    전체 영역        │
+│   (자유 구성)       │
+│                     │
+└─────────────────────┘
+
+// 2. 좌우 분할 (Master-Detail)
+type: 'split-horizontal'
+┌──────────┬──────────┐
+│          │          │
+│  영역 A  │  영역 B  │
+│          │          │
+└──────────┴──────────┘
+
+// 3. 상하 분할
+type: 'split-vertical'
+┌─────────────────────┐
+│      영역 A         │
+├─────────────────────┤
+│      영역 B         │
+└─────────────────────┘
+
+// 4. 2x2 그리드 (대시보드)
+type: 'grid-2x2'
+┌──────────┬──────────┐
+│  영역 1  │  영역 2  │
+├──────────┼──────────┤
+│  영역 3  │  영역 4  │
+└──────────┴──────────┘
+
+// 5. 3단 분할
+type: 'three-column'
+┌────┬─────────┬────┐
+│ A  │    B    │ C  │
+│    │         │    │
+└────┴─────────┴────┘
+
+// 6. 사이드바 + 메인
+type: 'sidebar-content'
+┌────┬──────────────┐
+│    │              │
+│ S  │   Content    │
+│    │              │
+└────┴──────────────┘
+```
+
+### 사용 방법
+
+```typescript
+// packages/ui/src/layout/ContentLayout.tsx
+import { ContentLayout, LayoutRegion } from '@workspace/ui/layout'
+
+// 예시 1: 좌우 분할 레이아웃
+function UserManagementPage() {
+  return (
+    <ContentLayout type="split-horizontal" ratio={[3, 7]} gap={16}>
+      <LayoutRegion name="left">
+        <UserList />
+      </LayoutRegion>
+      <LayoutRegion name="right">
+        <UserDetail />
+      </LayoutRegion>
+    </ContentLayout>
+  )
+}
+
+// 예시 2: 대시보드 그리드
+function DashboardPage() {
+  return (
+    <ContentLayout type="grid-2x2" gap={24}>
+      <LayoutRegion name="cell-1">
+        <StatisticsWidget />
+      </LayoutRegion>
+      <LayoutRegion name="cell-2">
+        <ChartWidget />
+      </LayoutRegion>
+      <LayoutRegion name="cell-3">
+        <RecentActivity />
+      </LayoutRegion>
+      <LayoutRegion name="cell-4">
+        <CustomComponent />
+      </LayoutRegion>
+    </ContentLayout>
+  )
+}
+
+// 예시 3: 비정형 (자유 구성)
+function CustomPage() {
+  return (
+    <ContentLayout type="single">
+      <LayoutRegion>
+        {/* 완전 자유로운 레이아웃 */}
+        <CustomComplexLayout />
+      </LayoutRegion>
+    </ContentLayout>
+  )
+}
+```
+
+### 디자인 시스템 통합
+
+```
+디자인 시스템 구성
+├─ Design Tokens (색상, 타이포그래피, 스페이싱)
+├─ UI Components (버튼, 인풋, 카드 등)
+└─ Layout Templates (영역 분할 구조) ← 이 문서의 내용
+   ├─ ContentLayout: 레이아웃 선택 컴포넌트
+   └─ LayoutRegion: 영역 컴포넌트
+```
+
+### 구현 위치
+
+```
+packages/ui/src/layout/
+├─ ContentLayout.tsx    # 레이아웃 템플릿 선택 컴포넌트
+├─ LayoutRegion.tsx     # 영역 컴포넌트
+└─ types.ts             # 레이아웃 타입 정의
+```
+
+### 핵심 원칙
+
+1. **레이아웃 = 영역 분할**: 화면을 어떻게 나눌지만 정의
+2. **콘텐츠 = 자유**: 각 영역 내부는 개발자가 자유롭게 구성
+3. **일관성 = 재사용**: 동일한 레이아웃 패턴을 프로젝트 전체에 적용
+
+---
+
 ## 4.9 PWA (Progressive Web App)
 
 ### 개념
