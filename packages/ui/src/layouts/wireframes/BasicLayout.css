@@ -4,11 +4,13 @@
   gap: 1.5rem;
   width: 100%;
   height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .wireframe-basic-section {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 1.5rem;
   flex: 1;

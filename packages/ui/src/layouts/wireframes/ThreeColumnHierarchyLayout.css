@@ -2,6 +2,8 @@
   display: flex;
   width: 100%;
   height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .wireframe-three-column-hierarchy--gap-small {
@@ -18,12 +20,13 @@
 
 /* 계층 컬럼 (대, 중) */
 .wireframe-three-column-hierarchy-column {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 1.5rem;
   overflow-y: auto;
   flex-shrink: 0;
+  color: var(--text-primary);
 }
 
 /* 상세 영역 (소) */
@@ -37,24 +40,26 @@
 
 /* 리스트 영역 */
 .wireframe-three-column-hierarchy-list {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 1.5rem;
   flex-shrink: 0;
   overflow-y: auto;
   max-height: 40%;
+  color: var(--text-primary);
 }
 
 /* 상세 콘텐츠 영역 */
 .wireframe-three-column-hierarchy-content {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 1.5rem;
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  color: var(--text-primary);
 }
 
 /* 반응형 */

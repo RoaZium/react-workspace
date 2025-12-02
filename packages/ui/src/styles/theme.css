@@ -1,0 +1,55 @@
+/* 라이트 테마 색상 변수 */
+:root.light,
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+
+  --border-color: #e5e7eb;
+  --border-hover: #d1d5db;
+
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+
+  --button-bg: #f3f4f6;
+  --button-hover: #e5e7eb;
+  --button-active: #d1d5db;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+/* 다크 테마 색상 변수 */
+:root.dark {
+  --bg-primary: #1f2937;
+  --bg-secondary: #111827;
+  --bg-tertiary: #374151;
+
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+
+  --border-color: #374151;
+  --border-hover: #4b5563;
+
+  --card-bg: #1f2937;
+  --card-border: #374151;
+
+  --button-bg: #374151;
+  --button-hover: #4b5563;
+  --button-active: #6b7280;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+}
+
+/* 전환 애니메이션 */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}

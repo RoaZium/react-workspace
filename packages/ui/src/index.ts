@@ -1,3 +1,10 @@
+// Theme
+export { ThemeProvider, useTheme } from './contexts/ThemeContext'
+export type { Theme } from './contexts/ThemeContext'
+
+// Providers (optional)
+export { MuiThemeProvider } from './providers'
+
 // Layouts
 export { PageLayout, PageHeader, PageContent } from './layouts/PageLayout'
 export { GridLayout } from './layouts/GridLayout'
@@ -15,3 +22,4 @@ export { ThreeColumnHierarchyLayout } from './layouts/wireframes/ThreeColumnHier
 export { Card, StatCard } from './components/Card'
 export { Button } from './components/Button'
 export { Table } from './components/Table'
+export { ThemeToggle } from './components/ThemeToggle'

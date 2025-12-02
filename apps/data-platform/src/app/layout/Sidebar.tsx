@@ -6,6 +6,7 @@ const DRAWER_WIDTH = 240
 
 // 공통 ListItemButton 스타일
 const menuItemStyles = {
+  color: 'var(--text-primary)',
   '&.Mui-selected': {
     backgroundColor: 'rgba(25, 118, 210, 0.08)',
     color: 'primary.main',
@@ -14,6 +15,12 @@ const menuItemStyles = {
     '&:hover': {
       backgroundColor: 'rgba(25, 118, 210, 0.12)',
     },
+  },
+  '&:hover': {
+    backgroundColor: 'var(--button-hover)',
+  },
+  '& .MuiListItemText-primary': {
+    color: 'inherit',
   },
 }
 
@@ -43,6 +50,8 @@ export function Sidebar() {
           boxSizing: 'border-box',
           display: 'flex',
           flexDirection: 'column',
+          bgcolor: 'var(--bg-secondary)',
+          borderRight: '1px solid var(--border-color)',
         },
       }}
     >
@@ -59,7 +68,7 @@ export function Sidebar() {
         </ListItem>
       </List>
 
-      <Divider />
+      <Divider sx={{ borderColor: 'var(--border-color)' }} />
 
       <List sx={{ flex: 1, overflowY: 'auto' }}>
         {currentMenuItems.map((item) => (

@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import '../../styles/theme.css'
 import './BasicLayout.css'
 
 interface BasicLayoutProps {

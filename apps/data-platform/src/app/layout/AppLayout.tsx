@@ -5,14 +5,14 @@ import { Sidebar } from './Sidebar'
 
 export function AppLayout() {
   return (
-    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
+    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', bgcolor: 'var(--bg-primary)' }}>
       <Header />
       <Sidebar />
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          bgcolor: 'background.default',
+          bgcolor: 'var(--bg-primary)',
           p: 3,
           display: 'flex',
           flexDirection: 'column',

@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Typography, Button, Box, IconButton, Avatar } from '@mui/material'
 import { Link, useLocation } from 'react-router-dom'
 import StorageIcon from '@mui/icons-material/Storage'
+import { ThemeToggle } from '@workspace/ui'
 import { topNavItems } from './navigation.config'
 
 export function Header() {
@@ -59,7 +60,8 @@ export function Header() {
           ))}
         </Box>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <ThemeToggle />
           <Typography variant="body2" sx={{ color: 'white' }}>
             관리자
           </Typography>
