@@ -13,7 +13,8 @@
       "Bash(sort:*)",
       "Bash(npx tsc:*)",
       "Bash(npm install:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

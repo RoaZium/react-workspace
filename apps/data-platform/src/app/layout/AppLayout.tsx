@@ -5,7 +5,7 @@ import { Sidebar } from './Sidebar'
 
 export function AppLayout() {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
       <Header />
       <Sidebar />
       <Box
@@ -14,11 +14,15 @@ export function AppLayout() {
           flexGrow: 1,
           bgcolor: 'background.default',
           p: 3,
-          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
         }}
       >
         <Toolbar />
-        <Outlet />
+        <Box sx={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
+          <Outlet />
+        </Box>
       </Box>
     </Box>
   )

@@ -1,8 +1,21 @@
-import { Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Toolbar, Box } from '@mui/material'
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Toolbar } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { sidebarMenus } from './navigation.config'
 
 const DRAWER_WIDTH = 240
+
+// 공통 ListItemButton 스타일
+const menuItemStyles = {
+  '&.Mui-selected': {
+    backgroundColor: 'rgba(25, 118, 210, 0.08)',
+    color: 'primary.main',
+    borderLeft: '4px solid',
+    borderColor: 'primary.main',
+    '&:hover': {
+      backgroundColor: 'rgba(25, 118, 210, 0.12)',
+    },
+  },
+}
 
 export function Sidebar() {
   const location = useLocation()
@@ -28,59 +41,39 @@ export function Sidebar() {
         '& .MuiDrawer-paper': {
           width: DRAWER_WIDTH,
           boxSizing: 'border-box',
+          display: 'flex',
+          flexDirection: 'column',
         },
       }}
     >
       <Toolbar />
-      <Box sx={{ overflow: 'auto' }}>
-        <List>
-          <ListItem disablePadding>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton
+            selected={location.pathname === '/'}
+            onClick={() => navigate('/')}
+            sx={menuItemStyles}
+          >
+            <ListItemText primary="홈" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+
+      <Divider />
+
+      <List sx={{ flex: 1, overflowY: 'auto' }}>
+        {currentMenuItems.map((item) => (
+          <ListItem key={item.path} disablePadding>
             <ListItemButton
-              selected={location.pathname === '/'}
-              onClick={() => navigate('/')}
-              sx={{
-                '&.Mui-selected': {
-                  backgroundColor: 'rgba(25, 118, 210, 0.08)',
-                  color: 'primary.main',
-                  borderLeft: '4px solid',
-                  borderColor: 'primary.main',
-                  '&:hover': {
-                    backgroundColor: 'rgba(25, 118, 210, 0.12)',
-                  },
-                },
-              }}
+              selected={isActive(item.path)}
+              onClick={() => navigate(item.path)}
+              sx={menuItemStyles}
             >
-              <ListItemText primary="홈" />
+              <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
-        </List>
-
-        <Divider />
-
-        <List>
-          {currentMenuItems.map((item) => (
-            <ListItem key={item.path} disablePadding>
-              <ListItemButton
-                selected={isActive(item.path)}
-                onClick={() => navigate(item.path)}
-                sx={{
-                  '&.Mui-selected': {
-                    backgroundColor: 'rgba(25, 118, 210, 0.08)',
-                    color: 'primary.main',
-                    borderLeft: '4px solid',
-                    borderColor: 'primary.main',
-                    '&:hover': {
-                      backgroundColor: 'rgba(25, 118, 210, 0.12)',
-                    },
-                  },
-                }}
-              >
-                <ListItemText primary={item.label} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
+        ))}
+      </List>
     </Drawer>
   )
 }
