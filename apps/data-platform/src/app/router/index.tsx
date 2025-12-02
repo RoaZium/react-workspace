@@ -13,6 +13,7 @@ import {
   FourColumnLayoutPage,
   ThreeRowsLayoutPage,
   SearchLayoutPage,
+  HierarchyLayoutPage,
 } from '@/pages/layouts'
 
 const router = createBrowserRouter([
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: 'layouts/search',
         element: <SearchLayoutPage />,
+      },
+      {
+        path: 'layouts/hierarchy',
+        element: <HierarchyLayoutPage />,
       },
     ],
   },
