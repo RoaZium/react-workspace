@@ -1,5 +1,13 @@
 import { ReactNode } from 'react'
-import './Table.css'
+import {
+  Table as MuiTable,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@mui/material'
 
 interface Column<T> {
   key: string
@@ -22,33 +30,45 @@ export function Table<T extends Record<string, any>>({
   onRowClick
 }: TableProps<T>) {
   return (
-    <div className={`table-container ${className}`}>
-      <table className="table">
-        <thead>
-          <tr>
+    <TableContainer component={Paper} className={className}>
+      <MuiTable>
+        <TableHead>
+          <TableRow>
             {columns.map(col => (
-              <th key={col.key} style={{ width: col.width }}>
+              <TableCell
+                key={col.key}
+                sx={{
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  fontSize: '0.875rem',
+                  width: col.width,
+                }}
+              >
                 {col.header}
-              </th>
+              </TableCell>
             ))}
-          </tr>
-        </thead>
-        <tbody>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {data.map((row, idx) => (
-            <tr
+            <TableRow
               key={idx}
               onClick={() => onRowClick?.(row)}
-              className={onRowClick ? 'clickable' : ''}
+              hover={!!onRowClick}
+              sx={{
+                cursor: onRowClick ? 'pointer' : 'default',
+              }}
             >
               {columns.map(col => (
-                <td key={col.key}>
+                <TableCell key={col.key}>
                   {col.render ? col.render(row) : row[col.key]}
-                </td>
+                </TableCell>
               ))}
-            </tr>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </TableBody>
+      </MuiTable>
+    </TableContainer>
   )
 }

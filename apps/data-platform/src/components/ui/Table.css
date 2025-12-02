@@ -1,8 +1,9 @@
 .table-container {
-  background: white;
+  background: var(--card-bg);
   border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--card-border);
   overflow: hidden;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
 .table {
@@ -11,24 +12,26 @@
 }
 
 .table thead {
-  background: #f5f5f5;
+  background: var(--bg-tertiary);
+  transition: background-color 0.2s;
 }
 
 .table th {
   padding: 0.875rem 1rem;
   text-align: left;
-  font-weight: 600;
-  font-size: 0.875rem;
-  color: #666;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--border-color);
 }
 
 .table td {
   padding: 1rem;
-  border-bottom: 1px solid #f0f0f0;
-  color: #1a1a1a;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
 }
 
 .table tbody tr:last-child td {
@@ -41,5 +44,5 @@
 }
 
 .table tbody tr.clickable:hover {
-  background-color: #f9fafb;
+  background-color: var(--bg-secondary);
 }

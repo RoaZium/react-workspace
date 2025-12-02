@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import './Button.css'
+import { Button as MuiButton } from '@mui/material'
 
 interface ButtonProps {
   children: ReactNode
@@ -18,13 +18,30 @@ export function Button({
   disabled = false,
   className = ''
 }: ButtonProps) {
+  const getMuiVariant = () => {
+    if (variant === 'primary') return 'contained'
+    if (variant === 'secondary') return 'outlined'
+    if (variant === 'danger') return 'contained'
+    if (variant === 'ghost') return 'text'
+    return 'contained'
+  }
+
+  const getColor = () => {
+    if (variant === 'danger') return 'error'
+    if (variant === 'primary') return 'primary'
+    return 'primary'
+  }
+
   return (
-    <button
-      className={`btn btn-${variant} btn-${size} ${className}`}
+    <MuiButton
+      variant={getMuiVariant()}
+      color={getColor()}
+      size={size}
       onClick={onClick}
       disabled={disabled}
+      className={className}
     >
       {children}
-    </button>
+    </MuiButton>
   )
 }

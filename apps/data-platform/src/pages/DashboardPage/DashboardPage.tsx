@@ -1,5 +1,5 @@
 import { PageLayout, PageHeader, PageContent, GridLayout, StatCard, Card } from '@workspace/ui'
-import './DashboardPage.css'
+import { Typography, Stack, Box } from '@mui/material'
 
 export function DashboardPage() {
   return (
@@ -37,22 +37,36 @@ export function DashboardPage() {
           />
         </GridLayout>
 
-        <Card className="activity-card">
-          <h2 className="section-title">Recent Activity</h2>
-          <div className="activity-list">
-            <div className="activity-item">
-              <span className="activity-time">5분 전</span>
-              <span className="activity-text">Pipeline "Sales ETL" 실행 완료</span>
-            </div>
-            <div className="activity-item">
-              <span className="activity-time">15분 전</span>
-              <span className="activity-text">Data Hub "MySQL Production" 연결 성공</span>
-            </div>
-            <div className="activity-item">
-              <span className="activity-time">1시간 전</span>
-              <span className="activity-text">Data Quality 검사 완료</span>
-            </div>
-          </div>
+        <Card>
+          <Typography variant="h5" gutterBottom fontWeight={600}>
+            Recent Activity
+          </Typography>
+          <Stack spacing={2} sx={{ mt: 2 }}>
+            <Box>
+              <Typography variant="caption" color="text.secondary">
+                5분 전
+              </Typography>
+              <Typography variant="body2">
+                Pipeline "Sales ETL" 실행 완료
+              </Typography>
+            </Box>
+            <Box>
+              <Typography variant="caption" color="text.secondary">
+                15분 전
+              </Typography>
+              <Typography variant="body2">
+                Data Hub "MySQL Production" 연결 성공
+              </Typography>
+            </Box>
+            <Box>
+              <Typography variant="caption" color="text.secondary">
+                1시간 전
+              </Typography>
+              <Typography variant="body2">
+                Data Quality 검사 완료
+              </Typography>
+            </Box>
+          </Stack>
         </Card>
       </PageContent>
     </PageLayout>

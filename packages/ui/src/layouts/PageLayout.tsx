@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import './PageLayout.css'
+import { Box, Typography } from '@mui/material'
 
 interface PageLayoutProps {
   children: ReactNode
@@ -17,21 +17,49 @@ interface PageContentProps {
 }
 
 export function PageLayout({ children }: PageLayoutProps) {
-  return <div className="page-layout">{children}</div>
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 3,
+        p: 3,
+      }}
+    >
+      {children}
+    </Box>
+  )
 }
 
 export function PageHeader({ title, description, actions }: PageHeaderProps) {
   return (
-    <div className="page-header">
-      <div className="page-header-text">
-        <h1 className="page-title">{title}</h1>
-        {description && <p className="page-description">{description}</p>}
-      </div>
-      {actions && <div className="page-header-actions">{actions}</div>}
-    </div>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        mb: 2,
+      }}
+    >
+      <Box>
+        <Typography variant="h4" component="h1" fontWeight={700} gutterBottom>
+          {title}
+        </Typography>
+        {description && (
+          <Typography variant="body1" color="text.secondary">
+            {description}
+          </Typography>
+        )}
+      </Box>
+      {actions && <Box>{actions}</Box>}
+    </Box>
   )
 }
 
 export function PageContent({ children, className = '' }: PageContentProps) {
-  return <div className={`page-content ${className}`}>{children}</div>
+  return (
+    <Box className={className} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+      {children}
+    </Box>
+  )
 }
