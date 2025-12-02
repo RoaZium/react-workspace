@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { Box, Paper } from '@mui/material'
 import '../../styles/theme.css'
 import './ThreeColumnHierarchyLayout.css'
 
@@ -7,16 +8,24 @@ interface ThreeColumnHierarchyLayoutProps {
   gap?: 'small' | 'medium' | 'large'
 }
 
-/**
- * ThreeColumnHierarchy 와이어프레임 레이아웃
- * 가로 3단 컬럼 계층 구조로 데이터를 표시하는 레이아웃
- * 데이터소스 > 카테고리 > 리소스(리스트+상세)와 같은 3단 계층 구조에 적합
- */
+const gapMap = {
+  small: 2,
+  medium: 3,
+  large: 4,
+}
+
 export function ThreeColumnHierarchyLayout({ children, gap = 'medium' }: ThreeColumnHierarchyLayoutProps) {
   return (
-    <div className={`wireframe-three-column-hierarchy wireframe-three-column-hierarchy--gap-${gap}`}>
+    <Box
+      sx={{
+        display: 'flex',
+        gap: gapMap[gap],
+        width: '100%',
+        height: '100%',
+      }}
+    >
       {children}
-    </div>
+    </Box>
   )
 }
 
@@ -26,21 +35,27 @@ interface ThreeColumnHierarchyColumnProps {
   className?: string
 }
 
-/**
- * 계층 컬럼 (대, 중 단계)
- */
 export function ThreeColumnHierarchyColumn({
   children,
   width,
   className = ''
 }: ThreeColumnHierarchyColumnProps) {
   return (
-    <div
-      className={`wireframe-three-column-hierarchy-column ${className}`}
-      style={{ width }}
+    <Paper
+      className={className}
+      elevation={0}
+      sx={{
+        width: width,
+        p: 3,
+        overflowY: 'auto',
+        flexShrink: 0,
+        border: 2,
+        borderColor: 'divider',
+        bgcolor: 'background.paper',
+      }}
     >
       {children}
-    </div>
+    </Paper>
   )
 }
 
@@ -49,14 +64,20 @@ interface ThreeColumnHierarchyDetailProps {
   className?: string
 }
 
-/**
- * 계층 상세 영역 (소 단계 - 리스트와 상세로 분할)
- */
 export function ThreeColumnHierarchyDetail({ children, className = '' }: ThreeColumnHierarchyDetailProps) {
   return (
-    <div className={`wireframe-three-column-hierarchy-detail ${className}`}>
+    <Box
+      className={className}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
+        minWidth: 0,
+        gap: 2,
+      }}
+    >
       {children}
-    </div>
+    </Box>
   )
 }
 
@@ -65,14 +86,23 @@ interface ThreeColumnHierarchyListProps {
   className?: string
 }
 
-/**
- * 리스트 영역
- */
 export function ThreeColumnHierarchyList({ children, className = '' }: ThreeColumnHierarchyListProps) {
   return (
-    <div className={`wireframe-three-column-hierarchy-list ${className}`}>
+    <Paper
+      className={className}
+      elevation={0}
+      sx={{
+        p: 3,
+        flexShrink: 0,
+        overflowY: 'auto',
+        maxHeight: '40%',
+        border: 2,
+        borderColor: 'divider',
+        bgcolor: 'background.paper',
+      }}
+    >
       {children}
-    </div>
+    </Paper>
   )
 }
 
@@ -81,14 +111,23 @@ interface ThreeColumnHierarchyContentProps {
   className?: string
 }
 
-/**
- * 상세 콘텐츠 영역
- */
 export function ThreeColumnHierarchyContent({ children, className = '' }: ThreeColumnHierarchyContentProps) {
   return (
-    <div className={`wireframe-three-column-hierarchy-content ${className}`}>
+    <Paper
+      className={className}
+      elevation={0}
+      sx={{
+        p: 3,
+        flex: 1,
+        minHeight: 0,
+        overflowY: 'auto',
+        border: 2,
+        borderColor: 'divider',
+        bgcolor: 'background.paper',
+      }}
+    >
       {children}
-    </div>
+    </Paper>
   )
 }
 

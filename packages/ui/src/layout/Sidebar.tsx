@@ -8,21 +8,26 @@ const DRAWER_WIDTH_COLLAPSED = 0
 
 const menuItemStyles = {
   color: 'var(--text-primary)',
+  backgroundColor: 'transparent',
   '&.Mui-selected': {
-    backgroundColor: 'rgba(25, 118, 210, 0.08)',
+    backgroundColor: 'rgba(25, 118, 210, 0.12)',
     color: 'primary.main',
     borderLeft: '4px solid',
     borderColor: 'primary.main',
     '&:hover': {
-      backgroundColor: 'rgba(25, 118, 210, 0.12)',
+      backgroundColor: 'rgba(25, 118, 210, 0.18)',
     },
   },
   '&:hover': {
-    backgroundColor: 'var(--button-hover)',
+    backgroundColor: 'action.hover',
   },
   '& .MuiListItemText-primary': {
     color: 'inherit',
+    fontWeight: 500,
   },
+  borderRadius: 1,
+  mx: 0.5,
+  my: 0.25,
 }
 
 interface SidebarProps {
@@ -58,10 +63,12 @@ export function Sidebar({ sidebarMenus }: SidebarProps) {
           boxSizing: 'border-box',
           display: isOpen ? 'flex' : 'none',
           flexDirection: 'column',
-          bgcolor: 'var(--bg-secondary)',
-          borderRight: '1px solid var(--border-color)',
+          bgcolor: 'background.paper',
+          borderRight: '1px solid',
+          borderColor: 'divider',
           transition: 'width 0.3s ease-in-out',
           overflowX: 'hidden',
+          boxShadow: 1,
         },
       }}
     >
@@ -90,9 +97,19 @@ export function Sidebar({ sidebarMenus }: SidebarProps) {
         </ListItem>
       </List>
 
-      <Divider sx={{ borderColor: 'var(--border-color)' }} />
+      <Divider sx={{ borderColor: 'var(--border-color)', opacity: 0.6 }} />
 
-      <List sx={{ flex: 1, overflowY: 'auto' }}>
+      <List
+        sx={{
+          flex: 1,
+          overflowY: 'auto',
+          bgcolor: 'background.paper',
+          '& .MuiListItem-root': {
+            borderBottom: '1px solid',
+            borderColor: 'divider',
+          },
+        }}
+      >
         {currentMenuItems.map((item) => (
           <ListItem key={item.path} disablePadding>
             <Tooltip title={isOpen ? '' : item.label} placement="right">

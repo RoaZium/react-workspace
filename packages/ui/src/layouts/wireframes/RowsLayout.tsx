@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { Box, Paper } from '@mui/material'
 import '../../styles/theme.css'
 import './RowsLayout.css'
 
@@ -7,13 +8,29 @@ interface RowsLayoutProps {
   gap?: 'small' | 'medium' | 'large'
 }
 
+const gapMap = {
+  small: 2,
+  medium: 3,
+  large: 4,
+}
+
 /**
  * Rows 와이어프레임 레이아웃
  * 행 기반 레이아웃 (각 행은 내부에서 컬럼을 가질 수 있음)
  */
 export function RowsLayout({ children, gap = 'medium' }: RowsLayoutProps) {
   return (
-    <div className={`wireframe-rows wireframe-rows--gap-${gap}`}>{children}</div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: gapMap[gap],
+        width: '100%',
+        height: '100%',
+      }}
+    >
+      {children}
+    </Box>
   )
 }
 
@@ -29,11 +46,21 @@ interface RowProps {
  */
 export function Row({ children, columns = 1, className = '' }: RowProps) {
   return (
-    <div
-      className={`wireframe-row wireframe-row--columns-${columns} ${className}`}
+    <Paper
+      className={className}
+      elevation={0}
+      sx={{
+        p: 3,
+        display: columns > 1 ? 'grid' : 'block',
+        gridTemplateColumns: columns > 1 ? `repeat(${columns}, 1fr)` : undefined,
+        gap: columns > 1 ? 2 : undefined,
+        border: 2,
+        borderColor: 'divider',
+        bgcolor: 'background.paper',
+      }}
     >
       {children}
-    </div>
+    </Paper>
   )
 }
 
@@ -48,12 +75,14 @@ interface RowItemProps {
  */
 export function RowItem({ children, span = 1, className = '' }: RowItemProps) {
   return (
-    <div
-      className={`wireframe-row-item ${className}`}
-      style={{ gridColumn: span > 1 ? `span ${span}` : undefined }}
+    <Box
+      className={className}
+      sx={{
+        gridColumn: span > 1 ? `span ${span}` : undefined,
+      }}
     >
       {children}
-    </div>
+    </Box>
   )
 }
 

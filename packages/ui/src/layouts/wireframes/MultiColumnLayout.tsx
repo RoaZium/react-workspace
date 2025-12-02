@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { Box, Paper } from '@mui/material'
 import '../../styles/theme.css'
 import './MultiColumnLayout.css'
 
@@ -6,6 +7,12 @@ interface MultiColumnLayoutProps {
   children: ReactNode
   columns?: 2 | 3 | 4
   gap?: 'small' | 'medium' | 'large'
+}
+
+const gapMap = {
+  small: 2,
+  medium: 3,
+  large: 4,
 }
 
 /**
@@ -18,11 +25,17 @@ export function MultiColumnLayout({
   gap = 'medium'
 }: MultiColumnLayoutProps) {
   return (
-    <div
-      className={`wireframe-multicolumn wireframe-multicolumn--${columns} wireframe-multicolumn--gap-${gap}`}
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${columns}, 1fr)`,
+        gap: gapMap[gap],
+        width: '100%',
+        height: '100%',
+      }}
     >
       {children}
-    </div>
+    </Box>
   )
 }
 
@@ -34,12 +47,20 @@ interface ColumnProps {
 
 export function Column({ children, span = 1, className = '' }: ColumnProps) {
   return (
-    <div
-      className={`wireframe-column ${className}`}
-      style={{ gridColumn: span > 1 ? `span ${span}` : undefined }}
+    <Paper
+      className={className}
+      elevation={0}
+      sx={{
+        p: 3,
+        overflowY: 'auto',
+        gridColumn: span > 1 ? `span ${span}` : undefined,
+        border: 2,
+        borderColor: 'divider',
+        bgcolor: 'background.paper',
+      }}
     >
       {children}
-    </div>
+    </Paper>
   )
 }
 
