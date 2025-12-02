@@ -1,11 +1,13 @@
 import { AppBar, Toolbar, Typography, Button, Box, IconButton, Avatar } from '@mui/material'
 import { Link, useLocation } from 'react-router-dom'
-import StorageIcon from '@mui/icons-material/Storage'
+import MenuIcon from '@mui/icons-material/Menu'
 import { ThemeToggle } from '@workspace/ui'
 import { topNavItems } from './navigation.config'
+import { useSidebar } from '../contexts/SidebarContext'
 
 export function Header() {
   const location = useLocation()
+  const { toggleSidebar } = useSidebar()
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -23,6 +25,15 @@ export function Header() {
       }}
     >
       <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="toggle sidebar"
+          onClick={toggleSidebar}
+          edge="start"
+          sx={{ mr: 2 }}
+        >
+          <MenuIcon />
+        </IconButton>
         <Typography
           variant="h6"
           component="div"
@@ -30,12 +41,8 @@ export function Header() {
             flexGrow: 0,
             mr: 4,
             fontWeight: 600,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1
           }}
         >
-          <StorageIcon />
           데이터 플랫폼
         </Typography>
 

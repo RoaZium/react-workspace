@@ -1,8 +1,10 @@
-import { Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Toolbar } from '@mui/material'
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Toolbar, Tooltip } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { sidebarMenus } from './navigation.config'
+import { useSidebar } from '../contexts/SidebarContext'
 
 const DRAWER_WIDTH = 240
+const DRAWER_WIDTH_COLLAPSED = 0
 
 // 공통 ListItemButton 스타일
 const menuItemStyles = {
@@ -27,6 +29,7 @@ const menuItemStyles = {
 export function Sidebar() {
   const location = useLocation()
   const navigate = useNavigate()
+  const { isOpen } = useSidebar()
 
   // 현재 어떤 섹션인지 판단
   const currentSection = location.pathname.split('/')[1] || 'dashboard'
@@ -39,32 +42,49 @@ export function Sidebar() {
     return location.pathname === path
   }
 
+  const drawerWidth = isOpen ? DRAWER_WIDTH : DRAWER_WIDTH_COLLAPSED
+
   return (
     <Drawer
       variant="permanent"
+      open={isOpen}
       sx={{
-        width: DRAWER_WIDTH,
+        width: drawerWidth,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: DRAWER_WIDTH,
+          width: drawerWidth,
           boxSizing: 'border-box',
-          display: 'flex',
+          display: isOpen ? 'flex' : 'none',
           flexDirection: 'column',
           bgcolor: 'var(--bg-secondary)',
           borderRight: '1px solid var(--border-color)',
+          transition: 'width 0.3s ease-in-out',
+          overflowX: 'hidden',
         },
       }}
     >
       <Toolbar />
       <List>
         <ListItem disablePadding>
-          <ListItemButton
-            selected={location.pathname === '/'}
-            onClick={() => navigate('/')}
-            sx={menuItemStyles}
-          >
-            <ListItemText primary="홈" />
-          </ListItemButton>
+          <Tooltip title={isOpen ? '' : '홈'} placement="right">
+            <ListItemButton
+              selected={location.pathname === '/'}
+              onClick={() => navigate('/')}
+              sx={{
+                ...menuItemStyles,
+                justifyContent: isOpen ? 'initial' : 'center',
+                px: isOpen ? 2 : 1.5,
+              }}
+            >
+              <ListItemText
+                primary="홈"
+                sx={{
+                  opacity: isOpen ? 1 : 0,
+                  transition: 'opacity 0.3s ease-in-out',
+                }}
+              />
+            </ListItemButton>
+          </Tooltip>
         </ListItem>
       </List>
 
@@ -73,13 +93,25 @@ export function Sidebar() {
       <List sx={{ flex: 1, overflowY: 'auto' }}>
         {currentMenuItems.map((item) => (
           <ListItem key={item.path} disablePadding>
-            <ListItemButton
-              selected={isActive(item.path)}
-              onClick={() => navigate(item.path)}
-              sx={menuItemStyles}
-            >
-              <ListItemText primary={item.label} />
-            </ListItemButton>
+            <Tooltip title={isOpen ? '' : item.label} placement="right">
+              <ListItemButton
+                selected={isActive(item.path)}
+                onClick={() => navigate(item.path)}
+                sx={{
+                  ...menuItemStyles,
+                  justifyContent: isOpen ? 'initial' : 'center',
+                  px: isOpen ? 2 : 1.5,
+                }}
+              >
+                <ListItemText
+                  primary={item.label}
+                  sx={{
+                    opacity: isOpen ? 1 : 0,
+                    transition: 'opacity 0.3s ease-in-out',
+                  }}
+                />
+              </ListItemButton>
+            </Tooltip>
           </ListItem>
         ))}
       </List>
