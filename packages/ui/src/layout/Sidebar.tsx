@@ -1,12 +1,11 @@
 import { Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Toolbar, Tooltip } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { sidebarMenus } from './navigation.config'
-import { useSidebar } from '../contexts/SidebarContext'
+import { NavItem } from './types'
+import { useSidebar } from './SidebarContext'
 
 const DRAWER_WIDTH = 240
 const DRAWER_WIDTH_COLLAPSED = 0
 
-// 공통 ListItemButton 스타일
 const menuItemStyles = {
   color: 'var(--text-primary)',
   '&.Mui-selected': {
@@ -26,12 +25,15 @@ const menuItemStyles = {
   },
 }
 
-export function Sidebar() {
+interface SidebarProps {
+  sidebarMenus: Record<string, NavItem[]>
+}
+
+export function Sidebar({ sidebarMenus }: SidebarProps) {
   const location = useLocation()
   const navigate = useNavigate()
   const { isOpen } = useSidebar()
 
-  // 현재 어떤 섹션인지 판단
   const currentSection = location.pathname.split('/')[1] || 'dashboard'
   const currentMenuItems = sidebarMenus[currentSection] || []
 

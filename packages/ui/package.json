@@ -16,10 +16,15 @@
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "@mui/material": "^5.0.0 || ^6.0.0"
+    "react-router-dom": "^6.0.0",
+    "@mui/material": "^5.0.0 || ^6.0.0",
+    "@mui/icons-material": "^5.0.0 || ^6.0.0"
   },
   "peerDependenciesMeta": {
     "@mui/material": {
+      "optional": true
+    },
+    "@mui/icons-material": {
       "optional": true
     }
   },

@@ -5,7 +5,10 @@ export type { Theme } from './contexts/ThemeContext'
 // Providers (optional)
 export { MuiThemeProvider } from './providers'
 
-// Layouts
+// App Layout (Navigation & Sidebar)
+export { AppLayout, Header, Sidebar, SidebarProvider, useSidebar, type NavItem, type SidebarSection, type LayoutConfig } from './layout'
+
+// Page Layouts
 export { PageLayout, PageHeader, PageContent } from './layouts/PageLayout'
 export { GridLayout } from './layouts/GridLayout'
 export { SplitLayout } from './layouts/SplitLayout'

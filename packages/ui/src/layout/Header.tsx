@@ -1,11 +1,17 @@
 import { AppBar, Toolbar, Typography, Button, Box, IconButton, Avatar } from '@mui/material'
 import { Link, useLocation } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu'
-import { ThemeToggle } from '@workspace/ui'
-import { topNavItems } from './navigation.config'
-import { useSidebar } from '../contexts/SidebarContext'
+import { ThemeToggle } from '../components/ThemeToggle'
+import { NavItem } from './types'
+import { useSidebar } from './SidebarContext'
 
-export function Header() {
+interface HeaderProps {
+  appTitle: string
+  topNavItems: NavItem[]
+  username?: string
+}
+
+export function Header({ appTitle, topNavItems, username = '관리자' }: HeaderProps) {
   const location = useLocation()
   const { toggleSidebar } = useSidebar()
 
@@ -43,7 +49,7 @@ export function Header() {
             fontWeight: 600,
           }}
         >
-          데이터 플랫폼
+          {appTitle}
         </Typography>
 
         <Box sx={{ flexGrow: 1, display: 'flex', gap: 1 }}>
@@ -70,10 +76,12 @@ export function Header() {
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <ThemeToggle />
           <Typography variant="body2" sx={{ color: 'white' }}>
-            관리자
+            {username}
           </Typography>
           <IconButton sx={{ p: 0 }}>
-            <Avatar sx={{ width: 32, height: 32, bgcolor: 'secondary.main' }}>관</Avatar>
+            <Avatar sx={{ width: 32, height: 32, bgcolor: 'secondary.main' }}>
+              {username.charAt(0)}
+            </Avatar>
           </IconButton>
         </Box>
       </Toolbar>

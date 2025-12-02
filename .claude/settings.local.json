@@ -17,7 +17,10 @@
       "Bash(cat:*)",
       "Bash(netstat:*)",
       "Bash(findstr:*)",
-      "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\providers\\MuiThemeProvider.tsx\")"
+      "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\providers\\MuiThemeProvider.tsx\")",
+      "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\layout\\Header.tsx\")",
+      "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\layout\\Sidebar.tsx\")",
+      "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\contexts\\SidebarContext.tsx\")"
     ],
     "deny": [],
     "ask": []
