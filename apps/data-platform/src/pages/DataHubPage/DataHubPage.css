@@ -1,3 +1,40 @@
+/* 컬럼 헤더 스타일 */
+.column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.column-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #1f2937;
+}
+
+.column-count {
+  background: #e5e7eb;
+  color: #4b5563;
+  padding: 0.25rem 0.625rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Empty State */
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Status Badge */
 .status-badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;

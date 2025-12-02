@@ -1,7 +1,14 @@
 import { useState } from 'react'
-import { Button } from '@workspace/ui'
-import { HierarchyLayout } from '@/components/HierarchyLayout'
-import type { DatasourceItem, CategoryItem, ResourceItem } from '@/components/HierarchyLayout'
+import {
+  Button,
+  PageLayout,
+  PageHeader,
+  PageContent,
+  Card,
+  Table,
+  ThreeColumnHierarchyLayout,
+} from '@workspace/ui'
+import type { DatasourceItem, CategoryItem, ResourceItem } from '@/components/HierarchyLayout/types'
 import './DataHubPage.css'
 
 // Mock 데이터소스 (대)
@@ -179,45 +186,137 @@ export function DataHubPage() {
     </div>
   )
 
+  // 선택된 데이터소스에 속한 카테고리 필터링
+  const filteredCategories = selectedDatasource
+    ? mockCategories.filter((cat) => cat.datasourceId === selectedDatasource.id)
+    : []
+
+  // 선택된 카테고리에 속한 리소스 필터링
+  const filteredResources = selectedCategory
+    ? mockResources.filter((res) => res.categoryId === selectedCategory.id)
+    : []
+
   return (
-    <HierarchyLayout
-      title="데이터 허브 관리"
-      description="데이터소스, 카테고리, 리소스를 계층적으로 관리하고 모니터링하세요"
-      actions={
-        <>
-          <Button variant="secondary" size="medium">
-            새로고침
-          </Button>
-          <Button variant="secondary" size="medium">
-            가져오기
-          </Button>
-          <Button variant="primary" size="medium">
-            데이터소스 추가
-          </Button>
-        </>
-      }
-      datasources={mockDatasources}
-      categories={mockCategories}
-      resources={mockResources}
-      selectedDatasource={selectedDatasource}
-      selectedCategory={selectedCategory}
-      selectedResource={selectedResource}
-      onDatasourceSelect={(ds) => {
-        setSelectedDatasource(ds)
-        setSelectedCategory(null)
-        setSelectedResource(null)
-      }}
-      onCategorySelect={(cat) => {
-        setSelectedCategory(cat)
-        setSelectedResource(null)
-      }}
-      onResourceSelect={setSelectedResource}
-      datasourceColumns={datasourceColumns}
-      categoryColumns={categoryColumns}
-      resourceColumns={resourceColumns}
-      renderResourceDetail={renderResourceDetail}
-      datasourceWidth="28%"
-      categoryWidth="28%"
-    />
+    <PageLayout>
+      <PageHeader
+        title="데이터 허브 관리"
+        description="데이터소스, 카테고리, 리소스를 계층적으로 관리하고 모니터링하세요"
+        actions={
+          <>
+            <Button variant="secondary" size="medium">
+              새로고침
+            </Button>
+            <Button variant="secondary" size="medium">
+              가져오기
+            </Button>
+            <Button variant="primary" size="medium">
+              데이터소스 추가
+            </Button>
+          </>
+        }
+      />
+
+      <PageContent>
+        <ThreeColumnHierarchyLayout gap="medium">
+          {/* 1단계: 데이터소스 (대) */}
+          <ThreeColumnHierarchyLayout.Column width="28%">
+            <div className="column-header">
+              <h3 className="column-title">데이터소스</h3>
+              <span className="column-count">{mockDatasources.length}</span>
+            </div>
+            <Card padding="none">
+              {mockDatasources.length > 0 ? (
+                <Table
+                  data={mockDatasources}
+                  columns={datasourceColumns}
+                  onRowClick={(ds) => {
+                    setSelectedDatasource(ds)
+                    setSelectedCategory(null)
+                    setSelectedResource(null)
+                  }}
+                  selectedRow={selectedDatasource}
+                />
+              ) : (
+                <div className="empty-state">
+                  <p>데이터소스가 없습니다</p>
+                </div>
+              )}
+            </Card>
+          </ThreeColumnHierarchyLayout.Column>
+
+          {/* 2단계: 카테고리 (중) */}
+          <ThreeColumnHierarchyLayout.Column width="28%">
+            <div className="column-header">
+              <h3 className="column-title">카테고리</h3>
+              <span className="column-count">{filteredCategories.length}</span>
+            </div>
+            <Card padding="none">
+              {selectedDatasource ? (
+                filteredCategories.length > 0 ? (
+                  <Table
+                    data={filteredCategories}
+                    columns={categoryColumns}
+                    onRowClick={(cat) => {
+                      setSelectedCategory(cat)
+                      setSelectedResource(null)
+                    }}
+                    selectedRow={selectedCategory}
+                  />
+                ) : (
+                  <div className="empty-state">
+                    <p>카테고리가 없습니다</p>
+                  </div>
+                )
+              ) : (
+                <div className="empty-state">
+                  <p>데이터소스를 선택하세요</p>
+                </div>
+              )}
+            </Card>
+          </ThreeColumnHierarchyLayout.Column>
+
+          {/* 3단계: 리소스 (소) - 리스트와 상세 */}
+          <ThreeColumnHierarchyLayout.Detail>
+            <div className="column-header">
+              <h3 className="column-title">리소스</h3>
+              <span className="column-count">{filteredResources.length}</span>
+            </div>
+
+            {selectedCategory ? (
+              <>
+                {/* 리소스 리스트 */}
+                <ThreeColumnHierarchyLayout.List>
+                  {filteredResources.length > 0 ? (
+                    <Table
+                      data={filteredResources}
+                      columns={resourceColumns}
+                      onRowClick={setSelectedResource}
+                      selectedRow={selectedResource}
+                    />
+                  ) : (
+                    <div className="empty-state">
+                      <p>리소스가 없습니다</p>
+                    </div>
+                  )}
+                </ThreeColumnHierarchyLayout.List>
+
+                {/* 리소스 상세 */}
+                {selectedResource && (
+                  <ThreeColumnHierarchyLayout.Content>
+                    {renderResourceDetail(selectedResource)}
+                  </ThreeColumnHierarchyLayout.Content>
+                )}
+              </>
+            ) : (
+              <Card>
+                <div className="empty-state">
+                  <p>카테고리를 선택하세요</p>
+                </div>
+              </Card>
+            )}
+          </ThreeColumnHierarchyLayout.Detail>
+        </ThreeColumnHierarchyLayout>
+      </PageContent>
+    </PageLayout>
   )
 }
