@@ -1,6 +1,7 @@
 /* 라이트 테마 색상 변수 */
 :root.light,
 :root {
+  /* Colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
   --bg-tertiary: #f3f4f6;
@@ -22,6 +23,32 @@
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+  /* Spacing Scale (8px 기반) */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 2.5rem;   /* 40px */
+  --spacing-3xl: 3rem;     /* 48px */
+  --spacing-4xl: 4rem;     /* 64px */
+
+  /* Layout Spacing */
+  --gap-section: var(--spacing-lg);      /* 섹션 간 여백: 24px */
+  --gap-component: var(--spacing-md);    /* 컴포넌트 간 여백: 16px */
+  --gap-element: var(--spacing-sm);      /* 요소 간 여백: 8px */
+
+  /* Padding */
+  --padding-page: var(--spacing-xl);     /* 페이지 패딩: 32px */
+  --padding-card: var(--spacing-lg);     /* 카드 패딩: 24px */
+  --padding-section: var(--spacing-lg);  /* 섹션 패딩: 24px */
+  --padding-button: var(--spacing-sm);   /* 버튼 패딩: 8px */
+
+  /* Grid & Layout Gaps */
+  --gap-grid-small: var(--spacing-md);   /* 작은 그리드 간격: 16px */
+  --gap-grid-medium: var(--spacing-lg);  /* 중간 그리드 간격: 24px */
+  --gap-grid-large: var(--spacing-xl);   /* 큰 그리드 간격: 32px */
 }
 
 /* 다크 테마 색상 변수 */

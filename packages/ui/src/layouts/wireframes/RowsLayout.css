@@ -8,15 +8,15 @@
 }
 
 .wireframe-rows--gap-small {
-  gap: 0.75rem;
+  gap: var(--gap-grid-small);
 }
 
 .wireframe-rows--gap-medium {
-  gap: 1.5rem;
+  gap: var(--gap-grid-medium);
 }
 
 .wireframe-rows--gap-large {
-  gap: 2rem;
+  gap: var(--gap-grid-large);
 }
 
 .wireframe-row {
@@ -24,7 +24,7 @@
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: var(--padding-card);
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -37,23 +37,23 @@
 
 .wireframe-row--columns-2 {
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: var(--gap-component);
 }
 
 .wireframe-row--columns-3 {
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: var(--gap-component);
 }
 
 .wireframe-row--columns-4 {
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  gap: var(--gap-component);
 }
 
 .wireframe-row-item {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--gap-element);
 }
 
 /* 반응형 */

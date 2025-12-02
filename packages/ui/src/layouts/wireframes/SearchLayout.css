@@ -8,22 +8,22 @@
 }
 
 .wireframe-search--gap-small {
-  gap: 8px;
+  gap: var(--gap-grid-small);
 }
 
 .wireframe-search--gap-medium {
-  gap: 16px;
+  gap: var(--gap-grid-medium);
 }
 
 .wireframe-search--gap-large {
-  gap: 24px;
+  gap: var(--gap-grid-large);
 }
 
 .wireframe-search-condition {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: var(--padding-card);
   flex-shrink: 0;
   color: var(--text-primary);
 }
@@ -32,7 +32,7 @@
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: var(--padding-card);
   flex: 1;
   min-height: 0;
   overflow-y: auto;

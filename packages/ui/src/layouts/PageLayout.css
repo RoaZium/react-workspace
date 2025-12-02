@@ -3,15 +3,15 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--gap-section);
 }
 
 .page-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1rem;
-  padding-bottom: 1rem;
+  gap: var(--gap-component);
+  padding-bottom: var(--spacing-md);
   border-bottom: 1px solid #e0e0e0;
 }
 
@@ -22,7 +22,7 @@
 .page-title {
   font-size: 1.75rem;
   font-weight: 600;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 var(--spacing-sm) 0;
   color: #1a1a1a;
 }
 
@@ -34,7 +34,7 @@
 
 .page-header-actions {
   display: flex;
-  gap: 0.75rem;
+  gap: var(--gap-element);
   align-items: center;
 }
 

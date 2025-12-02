@@ -22,15 +22,15 @@
 
 /* Gap Sizes */
 .gap-small {
-  gap: 0.75rem;
+  gap: var(--gap-grid-small);
 }
 
 .gap-medium {
-  gap: 1.5rem;
+  gap: var(--gap-grid-medium);
 }
 
 .gap-large {
-  gap: 2rem;
+  gap: var(--gap-grid-large);
 }
 
 /* Responsive */

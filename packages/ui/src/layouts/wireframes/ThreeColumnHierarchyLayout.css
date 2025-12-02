@@ -7,15 +7,15 @@
 }
 
 .wireframe-three-column-hierarchy--gap-small {
-  gap: 0.75rem;
+  gap: var(--gap-grid-small);
 }
 
 .wireframe-three-column-hierarchy--gap-medium {
-  gap: 1.5rem;
+  gap: var(--gap-grid-medium);
 }
 
 .wireframe-three-column-hierarchy--gap-large {
-  gap: 2rem;
+  gap: var(--gap-grid-large);
 }
 
 /* 계층 컬럼 (대, 중) */
@@ -23,7 +23,7 @@
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: var(--padding-card);
   overflow-y: auto;
   flex-shrink: 0;
   color: var(--text-primary);
@@ -35,7 +35,7 @@
   flex-direction: column;
   flex: 1;
   min-width: 0;
-  gap: 1.5rem;
+  gap: var(--gap-component);
 }
 
 /* 리스트 영역 */
@@ -43,7 +43,7 @@
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: var(--padding-card);
   flex-shrink: 0;
   overflow-y: auto;
   max-height: 40%;
@@ -55,7 +55,7 @@
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: var(--padding-card);
   flex: 1;
   min-height: 0;
   overflow-y: auto;

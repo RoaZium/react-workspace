@@ -19,22 +19,22 @@
 }
 
 .wireframe-multicolumn--gap-small {
-  gap: 0.75rem;
+  gap: var(--gap-grid-small);
 }
 
 .wireframe-multicolumn--gap-medium {
-  gap: 1.5rem;
+  gap: var(--gap-grid-medium);
 }
 
 .wireframe-multicolumn--gap-large {
-  gap: 2rem;
+  gap: var(--gap-grid-large);
 }
 
 .wireframe-column {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: var(--padding-card);
   overflow-y: auto;
   color: var(--text-primary);
 }
