@@ -23,7 +23,8 @@
       "Bash(del \"d:\\repos\\react-workspace\\apps\\data-platform\\src\\app\\contexts\\SidebarContext.tsx\")",
       "Bash(timeout 10 bash -c 'while ! netstat -an | findstr \"\"5173.*LISTENING\"\" > /dev/null 2>&1; do sleep 1; done')",
       "Bash(del \"d:\\repos\\react-workspace\\packages\\ui\\src\\layouts\\wireframes\\ThreeColumnSplitLayout.tsx\")",
-      "Bash(del \"d:\\repos\\react-workspace\\packages\\ui\\src\\layouts\\wireframes\\MasterDetailLayout.tsx\")"
+      "Bash(del \"d:\\repos\\react-workspace\\packages\\ui\\src\\layouts\\wireframes\\MasterDetailLayout.tsx\")",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

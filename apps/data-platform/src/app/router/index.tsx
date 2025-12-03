@@ -6,15 +6,12 @@ import { PipelinePage } from '@/pages/PipelinePage'
 import { CatalogPage } from '@/pages/CatalogPage'
 import { QualityPage } from '@/pages/QualityPage'
 import { LayoutGalleryPage } from '@/pages/LayoutGalleryPage'
-import {
-  BasicLayoutPage,
-  TwoColumnLayoutPage,
-  ThreeColumnLayoutPage,
-  FourColumnLayoutPage,
-  ThreeRowsLayoutPage,
-  SearchLayoutPage,
-  HierarchyLayoutPage,
-} from '@/pages/layouts'
+import { BasicLayoutPage } from '@/pages/layouts/BasicLayoutPage'
+import { TwoColumnLayoutPage } from '@/pages/layouts/TwoColumnLayoutPage'
+import { ThreeColumnLayoutPage } from '@/pages/layouts/ThreeColumnLayoutPage'
+import { FourColumnLayoutPage } from '@/pages/layouts/FourColumnLayoutPage'
+import { ThreeRowsLayoutPage } from '@/pages/layouts/ThreeRowsLayoutPage'
+import { SearchLayoutPage } from '@/pages/layouts/SearchLayoutPage'
 
 const router = createBrowserRouter([
   {
@@ -68,10 +65,6 @@ const router = createBrowserRouter([
       {
         path: 'layouts/search',
         element: <SearchLayoutPage />,
-      },
-      {
-        path: 'layouts/hierarchy',
-        element: <HierarchyLayoutPage />,
       },
     ],
   },

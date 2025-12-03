@@ -8,7 +8,7 @@ import ViewColumnIcon from '@mui/icons-material/ViewColumn'
 import ViewStreamIcon from '@mui/icons-material/ViewStream'
 import SearchIcon from '@mui/icons-material/Search'
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined'
-import type { LayoutConfig } from '@workspace/ui/src/layout/types'
+import type { LayoutConfig } from '@workspace/ui'
 
 /**
  * 데이터 플랫폼 네비게이션 설정 (도메인 중심)
@@ -39,7 +39,6 @@ export const layoutConfig: LayoutConfig = {
       { label: '4단 컬럼', path: '/layouts/4column', icon: <ViewColumnIcon /> },
       { label: '3단 행', path: '/layouts/3rows', icon: <ViewStreamIcon /> },
       { label: '검색 레이아웃', path: '/layouts/search', icon: <SearchIcon /> },
-      { label: '3단 컬럼 계층', path: '/layouts/hierarchy', icon: <AccountTreeOutlinedIcon /> },
     ],
     dashboard: [
       { label: '대시보드 홈', path: '/', icon: <DashboardIcon /> },

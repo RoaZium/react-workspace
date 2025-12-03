@@ -93,7 +93,11 @@ export function LayoutDetailModal({ layout, isOpen, onClose }: LayoutDetailModal
           {viewMode === 'preview' ? (
             <div className={`layout-modal__preview layout-modal__preview--${deviceType}`}>
               <div className="layout-modal__preview-frame">
-                <layout.component />
+                {layout.component ? <layout.component /> : (
+                  <div style={{ padding: '2rem', textAlign: 'center', color: '#666' }}>
+                    미리보기를 사용할 수 없습니다. 코드 보기를 확인하세요.
+                  </div>
+                )}
               </div>
             </div>
           ) : (

@@ -1,10 +1,12 @@
-import { ReactNode } from 'react'
-import { Card as MuiCard, CardContent, Box, Typography } from '@mui/material'
+import type { ReactNode } from 'react'
+import { Card as MuiCard, CardContent, Box, Typography, type SxProps, type Theme } from '@mui/material'
 
 interface CardProps {
   children: ReactNode
   className?: string
   padding?: 'none' | 'small' | 'medium' | 'large'
+  title?: string
+  sx?: SxProps<Theme>
 }
 
 interface StatCardProps {
@@ -12,8 +14,9 @@ interface StatCardProps {
   value: string | number
   label: string
   trend?: {
-    value: string
-    isPositive: boolean
+    value: string | number
+    direction?: 'up' | 'down'
+    isPositive?: boolean
   }
 }
 
@@ -24,7 +27,7 @@ const paddingMap = {
   large: 4,
 }
 
-export function Card({ children, className = '', padding = 'medium' }: CardProps) {
+export function Card({ children, className = '', padding = 'medium', title, sx }: CardProps) {
   return (
     <MuiCard
       className={className}
@@ -34,8 +37,24 @@ export function Card({ children, className = '', padding = 'medium' }: CardProps
           boxShadow: 3,
         },
         transition: 'box-shadow 0.2s',
+        ...sx,
       }}
     >
+      {title && (
+        <Box
+          sx={{
+            px: paddingMap[padding],
+            pt: paddingMap[padding],
+            pb: 1,
+            borderBottom: 1,
+            borderColor: 'divider',
+          }}
+        >
+          <Typography variant="h6" fontWeight={600}>
+            {title}
+          </Typography>
+        </Box>
+      )}
       <CardContent sx={{ p: paddingMap[padding] }}>
         {children}
       </CardContent>
@@ -81,10 +100,19 @@ export function StatCard({ icon, value, label, trend }: StatCardProps) {
               <Typography
                 variant="body2"
                 fontWeight={600}
-                color={trend.isPositive ? 'success.main' : 'error.main'}
+                color={
+                  trend.isPositive !== undefined
+                    ? trend.isPositive
+                      ? 'success.main'
+                      : 'error.main'
+                    : trend.direction === 'up'
+                    ? 'success.main'
+                    : 'error.main'
+                }
                 sx={{ mt: 0.5 }}
               >
-                {trend.isPositive ? '↑' : '↓'} {trend.value}
+                {trend.direction === 'up' || trend.isPositive ? '↑' : '↓'} {trend.value}
+                {typeof trend.value === 'number' ? '%' : ''}
               </Typography>
             )}
           </Box>

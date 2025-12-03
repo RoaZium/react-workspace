@@ -1,29 +1,74 @@
-// Theme
-export { ThemeProvider, useTheme } from './contexts/ThemeContext'
-export type { Theme } from './contexts/ThemeContext'
+/**
+ * @workspace/ui - UI Component Library
+ *
+ * Feature-Sliced Design (FSD) 아키텍처 기반
+ */
 
-// Providers (optional)
-export { MuiThemeProvider } from './providers'
+// ============================================
+// Shared Layer (FSD)
+// ============================================
 
-// App Layout (Navigation & Sidebar)
-export { AppLayout, Header, Sidebar, SidebarProvider, useSidebar, type NavItem, type SidebarSection, type LayoutConfig } from './layout'
+// Layouts (shared/ui/layouts)
+export {
+  // App Shell
+  AppShell,
+  Header,
+  Sidebar,
+  SidebarProvider,
+  useSidebar,
+  // Page
+  Page,
+  PageHeader,
+  PageContent,
+  // Split
+  MasterDetail,
+  ThreeColumn,
+  TwoColumnPlusSplitLayout,
+  MasterDetailLayout,
+  // Grid
+  Grid,
+  // Stack
+  Stack,
+  // Special
+  TabLayout,
+  SearchLayout,
+} from './shared/ui/layouts'
 
-// Page Layouts
-export { PageLayout, PageHeader, PageContent } from './layouts/PageLayout'
-export { GridLayout } from './layouts/GridLayout'
-export { SplitLayout } from './layouts/SplitLayout'
-export { TabLayout } from './layouts/TabLayout'
+export type { LayoutConfig, NavItem, SidebarSection } from './shared/ui/layouts'
 
-// Wireframe Layouts
-export { BasicLayout } from './layouts/wireframes/BasicLayout'
-export { MultiColumnLayout } from './layouts/wireframes/MultiColumnLayout'
-export { RowsLayout } from './layouts/wireframes/RowsLayout'
-export { SearchLayout } from './layouts/wireframes/SearchLayout'
-export { ThreeColumnHierarchyLayout } from './layouts/wireframes/ThreeColumnHierarchyLayout'
-export { TwoColumnPlusSplitLayout } from './layouts/wireframes/TwoColumnPlusSplitLayout'
-
+// ============================================
 // Components
+// ============================================
+
 export { Card, StatCard } from './components/Card'
 export { Button } from './components/Button'
 export { Table } from './components/Table'
 export { ThemeToggle } from './components/ThemeToggle'
+
+// ============================================
+// Theme & Providers
+// ============================================
+
+export { ThemeProvider, useTheme } from './contexts/ThemeContext'
+export type { Theme } from './contexts/ThemeContext'
+export { MuiThemeProvider } from './providers'
+
+// ============================================
+// Legacy Aliases - 하위 호환성
+// ============================================
+
+// @deprecated - Use AppShell
+export { AppShell as AppLayout } from './shared/ui/layouts'
+
+// @deprecated - Use Page
+export { Page as PageLayout, Page as PageTemplate } from './shared/ui/layouts'
+// PageHeader and PageContent are already exported above
+
+// @deprecated - Use Grid
+export { Grid as GridLayout } from './shared/ui/layouts'
+
+// @deprecated - Use ThreeColumn
+export { ThreeColumn as ThreeColumnLayout } from './shared/ui/layouts'
+
+// @deprecated - Use Stack or Grid
+export { Stack as SingleColumnLayout } from './shared/ui/layouts'

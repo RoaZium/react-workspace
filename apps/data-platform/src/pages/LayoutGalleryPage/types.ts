@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 export type LayoutCategory = 'all' | 'basic' | 'column' | 'row' | 'search'
 
@@ -8,7 +8,7 @@ export interface LayoutTemplate {
   description: string
   category: LayoutCategory
   thumbnail: string
-  component: React.ComponentType
+  component?: React.ComponentType
   code: string
   features: string[]
   useCase: string

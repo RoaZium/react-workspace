@@ -1,7 +1,0 @@
-export { BasicLayoutPage } from './BasicLayoutPage'
-export { TwoColumnLayoutPage } from './TwoColumnLayoutPage'
-export { ThreeColumnLayoutPage } from './ThreeColumnLayoutPage'
-export { FourColumnLayoutPage } from './FourColumnLayoutPage'
-export { ThreeRowsLayoutPage } from './ThreeRowsLayoutPage'
-export { SearchLayoutPage } from './SearchLayoutPage'
-export { HierarchyLayoutPage } from './HierarchyLayoutPage'

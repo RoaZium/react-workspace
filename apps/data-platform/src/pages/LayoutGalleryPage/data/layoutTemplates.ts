@@ -123,7 +123,7 @@ export function ThreeRowsLayoutPage() {
     description: '검색 필터와 결과 목록을 효율적으로 배치한 레이아웃입니다.',
     category: 'search',
     thumbnail: '/thumbnails/search-layout.png',
-    component: SearchLayoutPage,
+    component: BasicLayoutPage,
     code: `import { SearchLayout } from '@workspace/ui/layouts'
 
 export function SearchLayoutPage() {
