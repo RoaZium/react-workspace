@@ -34,9 +34,14 @@ React Monorepo 프로젝트의 전체 아키텍처, 개발 가이드 및 도메�
    - 패키지 간 의존성 관리
    - 공통 UI 컴포넌트 개발
 
+6. [**Layout Architecture (레이아웃 아키텍처)**](./07-layout-architecture.md)
+   - 레이아웃 계층 구조 (페이지/섹션/컴포넌트)
+   - 섹션 템플릿 종류 및 사용법
+   - 실무 적용 예시
+
 ### III. 도메인 문서
 
-6. [**Data Hub Domain (데이터 허브 도메인)**](./06-data-hub-domain.md)
+7. [**Data Hub Domain (데이터 허브 도메인)**](./06-data-hub-domain.md)
    - 데이터 발생 객체 관리 시스템
    - 데이터베이스 스키마 설계
    - 계층 구조 (data_source → category → resource)
