@@ -4,13 +4,13 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": -147.6096,
-    "scrollLeft": -429.3699,
-    "zoomLevel": 0.91,
+    "scrollTop": -658.9276,
+    "scrollLeft": -445.9752,
+    "zoomLevel": 0.43,
     "show": 431,
     "database": 4,
     "databaseName": "jhg",
-    "canvasType": "ERD",
+    "canvasType": "@dineug/erd-editor/builtin-generator-code",
     "language": 1,
     "tableNameCase": 4,
     "columnNameCase": 2,
@@ -145,15 +145,15 @@
           "WXDGCe6JwBKR871AemnIO"
         ],
         "ui": {
-          "x": 472,
-          "y": 495,
+          "x": 475.2967,
+          "y": 477.4175,
           "zIndex": 27,
           "widthName": 60,
           "widthComment": 93,
           "color": ""
         },
         "meta": {
-          "updateAt": 1764725550854,
+          "updateAt": 1764749902514,
           "createAt": 1764660974935
         }
       },
@@ -188,15 +188,15 @@
           "Kku0kl6zO7CSwyJbfjK3B"
         ],
         "ui": {
-          "x": 509.3546,
-          "y": 942.8659,
+          "x": 481.8821,
+          "y": 895.6132,
           "zIndex": 32,
           "widthName": 60,
           "widthComment": 93,
           "color": ""
         },
         "meta": {
-          "updateAt": 1764725722532,
+          "updateAt": 1764749909729,
           "createAt": 1764660990433
         }
       }
@@ -983,8 +983,8 @@
           "columnIds": [
             "uqwgJ6bQjh7OzfZ2wzQ59"
           ],
-          "x": 792.5,
-          "y": 495,
+          "x": 795.7967,
+          "y": 477.4175,
           "direction": 4
         },
         "meta": {
@@ -1002,8 +1002,8 @@
           "columnIds": [
             "UBg70MbITmplNTh60V7MD"
           ],
-          "x": 792.5,
-          "y": 815,
+          "x": 795.7967,
+          "y": 797.4175,
           "direction": 8
         },
         "end": {
@@ -1011,8 +1011,8 @@
           "columnIds": [
             "UCUoqquRIgZD5zh1LSmrm"
           ],
-          "x": 823.3546,
-          "y": 942.8659,
+          "x": 795.8821,
+          "y": 895.6132,
           "direction": 4
         },
         "meta": {
