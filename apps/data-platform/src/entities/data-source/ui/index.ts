@@ -1,1 +1,1 @@
-export * from './DataSourceTable'
+export { DataSourceTable } from './DataSourceTable'

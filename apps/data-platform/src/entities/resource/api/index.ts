@@ -1,2 +1,1 @@
-export * from './queries'
-export * from './mutations'
+export { useResources, useResourcesByCategory } from './queries'

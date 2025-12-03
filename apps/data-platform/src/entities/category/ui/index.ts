@@ -1,1 +1,1 @@
-export * from './CategoryTable'
+export { CategoryTable } from './CategoryTable'

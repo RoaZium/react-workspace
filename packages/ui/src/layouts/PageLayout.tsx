@@ -22,8 +22,10 @@ export function PageLayout({ children }: PageLayoutProps) {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 3,
+        height: '100vh',
+        overflow: 'hidden',
         p: 3,
+        gap: 2,
       }}
     >
       {children}
@@ -38,7 +40,7 @@ export function PageHeader({ title, description, actions }: PageHeaderProps) {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        mb: 2,
+        flexShrink: 0,
       }}
     >
       <Box>
@@ -58,7 +60,16 @@ export function PageHeader({ title, description, actions }: PageHeaderProps) {
 
 export function PageContent({ children, className = '' }: PageContentProps) {
   return (
-    <Box className={className} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+    <Box
+      className={className}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
+        minHeight: 0,
+        overflow: 'hidden',
+      }}
+    >
       {children}
     </Box>
   )

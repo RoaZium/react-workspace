@@ -1,2 +1,2 @@
-export * from './ResourceTable'
-export * from './ResourceDetail'
+export { ResourceTable } from './ResourceTable'
+export { ResourceDetail } from './ResourceDetail'

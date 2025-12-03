@@ -1,30 +1,39 @@
-import { Table } from '@workspace/ui'
+import { List, ListItem, ListItemButton, ListItemText, Typography, Chip, Box, Paper } from '@mui/material'
 import type { Resource } from '../model'
 
-interface ResourceTableProps {
+export interface ResourceTableProps {
   data: Resource[]
   selectedRow?: Resource | null
-  onRowClick: (resource: Resource) => void
+  onRowClick?: (resource: Resource) => void
 }
 
-/**
- * 리소스 테이블 (재사용 가능한 UI 컴포넌트)
- */
 export function ResourceTable({ data, selectedRow, onRowClick }: ResourceTableProps) {
-  const columns = [
-    { key: 'name', header: '리소스명', width: '50%' },
-    { key: 'code', header: '코드', width: '25%' },
-    {
-      key: 'isActive',
-      header: '상태',
-      width: '25%',
-      render: (item: Resource) => (
-        <span className={`status-badge status-${item.isActive ? 'active' : 'inactive'}`}>
-          {item.isActive ? '활성' : '비활성'}
-        </span>
-      ),
-    },
-  ]
-
-  return <Table data={data} columns={columns} onRowClick={onRowClick} selectedRow={selectedRow} />
+  return (
+    <Paper sx={{ maxHeight: '100%', overflow: 'auto' }}>
+      <List dense>
+        {data.map((resource) => (
+          <ListItem key={resource.internalId} disablePadding>
+            <ListItemButton
+              selected={selectedRow?.internalId === resource.internalId}
+              onClick={() => onRowClick?.(resource)}
+            >
+              <ListItemText
+                primary={
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <Typography variant="body2" fontWeight={500}>{resource.name}</Typography>
+                    <Chip label={resource.code} size="small" variant="outlined" />
+                  </Box>
+                }
+                secondary={
+                  <Typography variant="caption" color="text.secondary">
+                    {resource.attributes.resourceType || 'N/A'} • {resource.attributes.sensor?.unit || ''}
+                  </Typography>
+                }
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Paper>
+  )
 }

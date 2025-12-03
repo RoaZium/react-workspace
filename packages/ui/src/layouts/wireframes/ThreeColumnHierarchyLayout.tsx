@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Box, Paper } from '@mui/material'
+import { Box, Paper, Typography } from '@mui/material'
 import '../../styles/theme.css'
 import './ThreeColumnHierarchyLayout.css'
 
@@ -33,12 +33,16 @@ interface ThreeColumnHierarchyColumnProps {
   children?: ReactNode
   width?: string
   className?: string
+  title?: string
+  count?: number
 }
 
 export function ThreeColumnHierarchyColumn({
   children,
   width,
-  className = ''
+  className = '',
+  title,
+  count
 }: ThreeColumnHierarchyColumnProps) {
   return (
     <Paper
@@ -46,15 +50,23 @@ export function ThreeColumnHierarchyColumn({
       elevation={0}
       sx={{
         width: width,
-        p: 3,
-        overflowY: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
         flexShrink: 0,
         border: 2,
         borderColor: 'divider',
         bgcolor: 'background.paper',
+        overflow: 'hidden',
       }}
     >
-      {children}
+      {title && (
+        <Box sx={{ p: 2, flexShrink: 0, borderBottom: 1, borderColor: 'divider' }}>
+          <Typography variant="h6" gutterBottom={false}>
+            {title} {count !== undefined && `(${count})`}
+          </Typography>
+        </Box>
+      )}
+      <Box sx={{ flex: 1, overflow: 'auto', p: 3 }}>{children}</Box>
     </Paper>
   )
 }
@@ -84,24 +96,34 @@ export function ThreeColumnHierarchyDetail({ children, className = '' }: ThreeCo
 interface ThreeColumnHierarchyListProps {
   children?: ReactNode
   className?: string
+  title?: string
+  count?: number
 }
 
-export function ThreeColumnHierarchyList({ children, className = '' }: ThreeColumnHierarchyListProps) {
+export function ThreeColumnHierarchyList({ children, className = '', title, count }: ThreeColumnHierarchyListProps) {
   return (
     <Paper
       className={className}
       elevation={0}
       sx={{
-        p: 3,
+        display: 'flex',
+        flexDirection: 'column',
         flexShrink: 0,
-        overflowY: 'auto',
         maxHeight: '40%',
         border: 2,
         borderColor: 'divider',
         bgcolor: 'background.paper',
+        overflow: 'hidden',
       }}
     >
-      {children}
+      {title && (
+        <Box sx={{ p: 2, flexShrink: 0, borderBottom: 1, borderColor: 'divider' }}>
+          <Typography variant="h6" gutterBottom={false}>
+            {title} {count !== undefined && `(${count})`}
+          </Typography>
+        </Box>
+      )}
+      <Box sx={{ flex: 1, overflow: 'auto', p: 3 }}>{children}</Box>
     </Paper>
   )
 }
@@ -109,24 +131,33 @@ export function ThreeColumnHierarchyList({ children, className = '' }: ThreeColu
 interface ThreeColumnHierarchyContentProps {
   children?: ReactNode
   className?: string
+  title?: string
 }
 
-export function ThreeColumnHierarchyContent({ children, className = '' }: ThreeColumnHierarchyContentProps) {
+export function ThreeColumnHierarchyContent({ children, className = '', title }: ThreeColumnHierarchyContentProps) {
   return (
     <Paper
       className={className}
       elevation={0}
       sx={{
-        p: 3,
+        display: 'flex',
+        flexDirection: 'column',
         flex: 1,
         minHeight: 0,
-        overflowY: 'auto',
         border: 2,
         borderColor: 'divider',
         bgcolor: 'background.paper',
+        overflow: 'hidden',
       }}
     >
-      {children}
+      {title && (
+        <Box sx={{ p: 2, flexShrink: 0, borderBottom: 1, borderColor: 'divider' }}>
+          <Typography variant="h6" gutterBottom={false}>
+            {title}
+          </Typography>
+        </Box>
+      )}
+      <Box sx={{ flex: 1, overflow: 'auto', p: 3 }}>{children}</Box>
     </Paper>
   )
 }

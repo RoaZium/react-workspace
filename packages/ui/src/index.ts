@@ -20,6 +20,7 @@ export { MultiColumnLayout } from './layouts/wireframes/MultiColumnLayout'
 export { RowsLayout } from './layouts/wireframes/RowsLayout'
 export { SearchLayout } from './layouts/wireframes/SearchLayout'
 export { ThreeColumnHierarchyLayout } from './layouts/wireframes/ThreeColumnHierarchyLayout'
+export { TwoColumnPlusSplitLayout } from './layouts/wireframes/TwoColumnPlusSplitLayout'
 
 // Components
 export { Card, StatCard } from './components/Card'

@@ -1,20 +1,52 @@
-import { Table } from '@workspace/ui'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip, Typography, Box } from '@mui/material'
 import type { Category } from '../model'
 
-interface CategoryTableProps {
+export interface CategoryTableProps {
   data: Category[]
   selectedRow?: Category | null
-  onRowClick: (category: Category) => void
+  onRowClick?: (category: Category) => void
 }
 
-/**
- * 카테고리 테이블 (재사용 가능한 UI 컴포넌트)
- */
 export function CategoryTable({ data, selectedRow, onRowClick }: CategoryTableProps) {
-  const columns = [
-    { key: 'name', header: '카테고리', width: '60%' },
-    { key: 'code', header: '코드', width: '40%' },
-  ]
-
-  return <Table data={data} columns={columns} onRowClick={onRowClick} selectedRow={selectedRow} />
+  return (
+    <TableContainer component={Paper} sx={{ maxHeight: '100%' }}>
+      <Table stickyHeader size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell width="30%">코드</TableCell>
+            <TableCell width="50%">명칭</TableCell>
+            <TableCell width="20%">태그</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((cat) => (
+            <TableRow
+              key={cat.internalId}
+              hover
+              selected={selectedRow?.internalId === cat.internalId}
+              onClick={() => onRowClick?.(cat)}
+              sx={{ cursor: 'pointer' }}
+            >
+              <TableCell>
+                <Typography variant="body2" fontWeight={500}>{cat.code}</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="body2">{cat.name}</Typography>
+                {cat.description && (
+                  <Typography variant="caption" color="text.secondary" display="block">{cat.description}</Typography>
+                )}
+              </TableCell>
+              <TableCell>
+                <Box display="flex" gap={0.5} flexWrap="wrap">
+                  {cat.metadata.tags?.slice(0, 2).map((tag) => (
+                    <Chip key={tag} label={tag} size="small" variant="outlined" />
+                  ))}
+                </Box>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )
 }
