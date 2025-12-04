@@ -1,0 +1,1 @@
+export { MasterDetailSection } from './MasterDetailSection'

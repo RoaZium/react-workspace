@@ -8,7 +8,7 @@
 // Shared Layer (FSD)
 // ============================================
 
-// Layouts (shared/ui/layouts)
+// Layouts (shared/ui/layouts) - Legacy exports
 export {
   // App Shell
   AppShell,
@@ -35,6 +35,21 @@ export {
 } from './shared/ui/layouts'
 
 export type { LayoutConfig, NavItem, SidebarSection } from './shared/ui/layouts'
+
+// ============================================
+// New Layout Architecture
+// ============================================
+
+// Section Templates (2nd layer)
+export {
+  MasterDetailSection,
+  GridSection,
+  ThreeColumnSection,
+  SingleColumnSection,
+} from './layouts/sections'
+
+// Page Templates (1st layer)
+// (to be added as needed)
 
 // ============================================
 // Components
