@@ -22,9 +22,9 @@ interface StatCardProps {
 
 const paddingMap = {
   none: 0,
-  small: 1.5,
-  medium: 3,
-  large: 4,
+  small: 1,
+  medium: 1.5,
+  large: 2,
 }
 
 export function Card({ children, className = '', padding = 'medium', title, sx }: CardProps) {
@@ -32,9 +32,13 @@ export function Card({ children, className = '', padding = 'medium', title, sx }
     <MuiCard
       className={className}
       sx={{
-        boxShadow: 1,
+        bgcolor: 'background.paper',
+        borderRadius: 1,
+        border: '1px solid',
+        borderColor: 'divider',
+        boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
         '&:hover': {
-          boxShadow: 3,
+          boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
         },
         transition: 'box-shadow 0.2s',
         ...sx,
@@ -50,7 +54,7 @@ export function Card({ children, className = '', padding = 'medium', title, sx }
             borderColor: 'divider',
           }}
         >
-          <Typography variant="h6" fontWeight={600}>
+          <Typography variant="subtitle1" fontWeight={600} fontSize="0.9375rem">
             {title}
           </Typography>
         </Box>
@@ -66,9 +70,13 @@ export function StatCard({ icon, value, label, trend }: StatCardProps) {
   return (
     <MuiCard
       sx={{
-        boxShadow: 1,
+        bgcolor: 'background.paper',
+        borderRadius: 1,
+        border: '1px solid',
+        borderColor: 'divider',
+        boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
         '&:hover': {
-          boxShadow: 3,
+          boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
         },
         transition: 'box-shadow 0.2s',
       }}

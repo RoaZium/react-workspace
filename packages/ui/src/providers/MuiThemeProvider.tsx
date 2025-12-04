@@ -33,8 +33,8 @@ export function MuiThemeProvider({ children }: Props) {
             main: mode === 'dark' ? '#ef4444' : '#f44336',
           },
           background: {
-            default: mode === 'dark' ? '#111827' : '#ffffff',
-            paper: mode === 'dark' ? '#1f2937' : '#ffffff',
+            default: mode === 'dark' ? '#111827' : '#f9fafb', // 페이지 배경 (라이트: 연한 회색)
+            paper: mode === 'dark' ? '#1f2937' : '#ffffff',   // 섹션 배경 (라이트: 흰색)
           },
           text: {
             primary: mode === 'dark' ? '#f9fafb' : '#111827',

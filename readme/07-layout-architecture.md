@@ -64,73 +64,115 @@ Main Content 내부를 도메인 특화 구조에 맞게 미리 정형화해 둔
 - 도메인별 최적화된 구조 패턴 제공
 - 일관된 UI/UX 경험 보장
 
+**공통 구조 원칙:**
+모든 섹션 템플릿은 다음 구조를 따릅니다:
+1. **SectionTitle (공통)**: 섹션 타이틀 및 메타 정보
+2. **용도별 슬롯**: 각 템플릿의 특성에 맞는 의미 있는 슬롯 (위치 기반이 아닌 용도 기반)
+
+**디자인 스펙 (현대적 스타일):**
+- 패딩: 12px (컴팩트하고 효율적)
+- 간격: 12px
+- 타이틀 폰트: 15px, semibold
+- 보조 텍스트: 13px
+- **그림자**: `0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)` (미묘한 그림자)
+- **border-radius**: 4px
+- **배경색**:
+  - 페이지 배경: `#f9fafb` (라이트) / `#111827` (다크)
+  - 섹션 배경: `#ffffff` (라이트) / `#1f2937` (다크)
+
 **주요 섹션 템플릿 종류:**
 
-#### 2.2.1 Master-Detail Layout (좌우 분할)
+#### 2.2.1 Master-Detail Section (마스터-디테일)
 ```typescript
-<MasterDetailLayout ratio={[3, 7]}>
-  <MasterPanel>
+<MasterDetailSection ratio={[3, 7]} gap={1.5}>
+  <MasterDetailSection.Title count={10}>사용자 관리</MasterDetailSection.Title>
+  <MasterDetailSection.MasterPanel>
     <UserList />
-  </MasterPanel>
-  <DetailPanel>
+  </MasterDetailSection.MasterPanel>
+  <MasterDetailSection.DetailPanel>
     <UserDetail />
-  </DetailPanel>
-</MasterDetailLayout>
+  </MasterDetailSection.DetailPanel>
+</MasterDetailSection>
 ```
+
+**슬롯 구조:**
+- `Title`: 섹션 타이틀 (공통, 옵션: count)
+- `MasterPanel`: 목록/선택 영역 (용도별)
+- `DetailPanel`: 상세 정보 영역 (용도별)
 
 **사용 사례:**
 - 목록 + 상세 페이지
 - 폴더 탐색기 + 파일 내용
 - 이메일 목록 + 이메일 내용
 
-#### 2.2.2 Three Column Layout (3단 분할)
+#### 2.2.2 Three Column Section (3단 컬럼)
 ```typescript
-<ThreeColumnLayout ratio={[2, 6, 2]}>
-  <LeftPanel>
-    <Navigation />
-  </LeftPanel>
-  <CenterPanel>
-    <MainContent />
-  </CenterPanel>
-  <RightPanel>
-    <Sidebar />
-  </RightPanel>
-</ThreeColumnLayout>
+<ThreeColumnSection ratio={[2, 6, 2]} gap={1.5}>
+  <ThreeColumnSection.Title>데이터 허브</ThreeColumnSection.Title>
+  <ThreeColumnSection.NavigationPanel>
+    <DataSourceNav />
+  </ThreeColumnSection.NavigationPanel>
+  <ThreeColumnSection.MainPanel>
+    <CategoryTable />
+  </ThreeColumnSection.MainPanel>
+  <ThreeColumnSection.WidgetPanel>
+    <ResourceInfo />
+  </ThreeColumnSection.WidgetPanel>
+</ThreeColumnSection>
 ```
+
+**슬롯 구조:**
+- `Title`: 섹션 타이틀 (공통)
+- `NavigationPanel`: 네비게이션 영역 (용도별)
+- `MainPanel`: 메인 콘텐츠 영역 (용도별)
+- `WidgetPanel`: 위젯/부가 정보 영역 (용도별)
 
 **사용 사례:**
 - 대시보드 (네비게이션 + 메인 + 위젯)
 - SNS 레이아웃 (메뉴 + 피드 + 추천)
+- 복잡한 데이터 관리 화면
 
-#### 2.2.3 Grid Layout (그리드)
+#### 2.2.3 Grid Section (그리드)
 ```typescript
-<GridLayout columns={2} rows={2} gap={16}>
-  <GridCell>
-    <StatisticsCard />
-  </GridCell>
-  <GridCell>
-    <ChartWidget />
-  </GridCell>
-  <GridCell>
-    <RecentActivity />
-  </GridCell>
-  <GridCell>
+<GridSection columns={2} gap={1.5}>
+  <GridSection.Title count={4}>대시보드 위젯</GridSection.Title>
+  <GridSection.Item role="statistic">
+    <SalesCard />
+  </GridSection.Item>
+  <GridSection.Item role="chart">
+    <RevenueChart />
+  </GridSection.Item>
+  <GridSection.Item role="info">
+    <UserStats />
+  </GridSection.Item>
+  <GridSection.Item role="action">
     <QuickActions />
-  </GridCell>
-</GridLayout>
+  </GridSection.Item>
+</GridSection>
 ```
+
+**슬롯 구조:**
+- `Title`: 섹션 타이틀 (공통)
+- `Item`: 그리드 아이템 (role로 용도 구분: 'statistic' | 'chart' | 'action' | 'info')
 
 **사용 사례:**
 - 대시보드
 - 갤러리
 - 위젯 배치
 
-#### 2.2.4 Single Column Layout (단일 영역)
+#### 2.2.4 Single Column Section (단일 컬럼)
 ```typescript
-<SingleColumnLayout maxWidth="1200px">
-  <Article />
-</SingleColumnLayout>
+<SingleColumnSection maxWidth="800px">
+  <SingleColumnSection.Title subtitle="2024-12-04">블로그 포스트</SingleColumnSection.Title>
+  <SingleColumnSection.Content type="article">
+    <ArticleBody />
+  </SingleColumnSection.Content>
+</SingleColumnSection>
 ```
+
+**슬롯 구조:**
+- `Title`: 섹션 타이틀 (공통, 옵션: subtitle)
+- `Content`: 콘텐츠 영역 (type으로 용도 구분: 'article' | 'form' | 'document')
 
 **사용 사례:**
 - 블로그 포스트
@@ -174,10 +216,11 @@ Main Content 내부를 도메인 특화 구조에 맞게 미리 정형화해 둔
   └─ Header
   └─ Sidebar
   └─ MainContent
-      └─ 섹션 템플릿 (MasterDetailLayout)
-          ├─ MasterPanel
+      └─ 섹션 템플릿 (MasterDetailSection)
+          ├─ Title (공통)
+          ├─ MasterPanel (용도별)
           │   └─ 컴포넌트 (UserListTable)
-          └─ DetailPanel
+          └─ DetailPanel (용도별)
               └─ 컴포넌트 (UserDetailForm)
 ```
 
@@ -190,14 +233,15 @@ export function UserManagementPage() {
       <Header />
       <Sidebar />
       <MainContent>
-        <MasterDetailLayout ratio={[4, 6]}>
-          <MasterPanel>
+        <MasterDetailSection ratio={[4, 6]} gap={1.5}>
+          <MasterDetailSection.Title count={25}>사용자 관리</MasterDetailSection.Title>
+          <MasterDetailSection.MasterPanel>
             <UserListTable />
-          </MasterPanel>
-          <DetailPanel>
+          </MasterDetailSection.MasterPanel>
+          <MasterDetailSection.DetailPanel>
             <UserDetailForm />
-          </DetailPanel>
-        </MasterDetailLayout>
+          </MasterDetailSection.DetailPanel>
+        </MasterDetailSection>
       </MainContent>
     </PageTemplate>
   )
@@ -214,11 +258,12 @@ export function UserManagementPage() {
   └─ Header
   └─ Sidebar
   └─ MainContent
-      └─ 섹션 템플릿 (GridLayout)
-          ├─ GridCell → 컴포넌트 (SalesChart)
-          ├─ GridCell → 컴포넌트 (RevenueCard)
-          ├─ GridCell → 컴포넌트 (UserStatsCard)
-          └─ GridCell → 컴포넌트 (RecentOrdersList)
+      └─ 섹션 템플릿 (GridSection)
+          ├─ Title (공통)
+          ├─ GridItem (chart) → 컴포넌트 (SalesChart)
+          ├─ GridItem (statistic) → 컴포넌트 (RevenueCard)
+          ├─ GridItem (info) → 컴포넌트 (UserStatsCard)
+          └─ GridItem (action) → 컴포넌트 (QuickActions)
 ```
 
 **코드 예시:**
@@ -230,20 +275,21 @@ export function DashboardPage() {
       <Header />
       <Sidebar />
       <MainContent>
-        <GridLayout columns={2} rows={2} gap={24}>
-          <GridCell>
+        <GridSection columns={2} gap={1.5}>
+          <GridSection.Title count={4}>대시보드</GridSection.Title>
+          <GridSection.Item role="chart">
             <SalesChart />
-          </GridCell>
-          <GridCell>
+          </GridSection.Item>
+          <GridSection.Item role="statistic">
             <RevenueCard />
-          </GridCell>
-          <GridCell>
+          </GridSection.Item>
+          <GridSection.Item role="info">
             <UserStatsCard />
-          </GridCell>
-          <GridCell>
-            <RecentOrdersList />
-          </GridCell>
-        </GridLayout>
+          </GridSection.Item>
+          <GridSection.Item role="action">
+            <QuickActions />
+          </GridSection.Item>
+        </GridSection>
       </MainContent>
     </PageTemplate>
   )
@@ -260,10 +306,11 @@ export function DashboardPage() {
   └─ Header
   └─ Sidebar
   └─ MainContent
-      └─ 섹션 템플릿 (ThreeColumnLayout)
-          ├─ LeftPanel → 컴포넌트 (DataSourceList)
-          ├─ CenterPanel → 컴포넌트 (CategoryTable)
-          └─ RightPanel → 컴포넌트 (ResourceDetail)
+      └─ 섹션 템플릿 (ThreeColumnSection)
+          ├─ Title (공통)
+          ├─ NavigationPanel (용도별) → 컴포넌트 (DataSourceList)
+          ├─ MainPanel (용도별) → 컴포넌트 (CategoryTable)
+          └─ WidgetPanel (용도별) → 컴포넌트 (ResourceDetail)
 ```
 
 **코드 예시:**
@@ -278,25 +325,26 @@ export function DataHubPage() {
       <Header />
       <Sidebar />
       <MainContent>
-        <ThreeColumnLayout ratio={[2, 5, 3]}>
-          <LeftPanel>
+        <ThreeColumnSection ratio={[2, 5, 3]} gap={1.5}>
+          <ThreeColumnSection.Title>데이터 허브</ThreeColumnSection.Title>
+          <ThreeColumnSection.NavigationPanel>
             <DataSourceList
               onSelect={setSelectedDataSource}
               selected={selectedDataSource}
             />
-          </LeftPanel>
-          <CenterPanel>
+          </ThreeColumnSection.NavigationPanel>
+          <ThreeColumnSection.MainPanel>
             <CategoryTable
               dataSourceId={selectedDataSource?.id}
               onSelect={setSelectedCategory}
             />
-          </CenterPanel>
-          <RightPanel>
+          </ThreeColumnSection.MainPanel>
+          <ThreeColumnSection.WidgetPanel>
             <ResourceDetail
               categoryId={selectedCategory?.id}
             />
-          </RightPanel>
-        </ThreeColumnLayout>
+          </ThreeColumnSection.WidgetPanel>
+        </ThreeColumnSection>
       </MainContent>
     </PageTemplate>
   )
@@ -310,18 +358,46 @@ export function DataHubPage() {
 ### 4.1 섹션 템플릿 구현 위치
 
 ```
-packages/ui/src/layouts/
-├── wireframes/              # 섹션 템플릿
-│   ├── MasterDetailLayout.tsx
-│   ├── ThreeColumnLayout.tsx
-│   ├── GridLayout.tsx
-│   └── SingleColumnLayout.tsx
-├── page-templates/          # 페이지 템플릿
+packages/ui/src/shared/ui/layouts/
+├── section/                      # 섹션 템플릿 (NEW)
+│   ├── MasterDetailSection.tsx   # 마스터-디테일 섹션
+│   ├── ThreeColumnSection.tsx    # 3단 컬럼 섹션
+│   ├── GridSection.tsx           # 그리드 섹션
+│   ├── SingleColumnSection.tsx   # 단일 컬럼 섹션
+│   └── index.ts
+├── page/                         # 페이지 템플릿
 │   ├── PageTemplate.tsx
 │   ├── Header.tsx
 │   ├── Sidebar.tsx
 │   └── Footer.tsx
 └── index.ts
+```
+
+### 4.2 디자인 토큰
+
+```css
+/* 섹션 템플릿 스타일 가이드 - 현대적 스타일 */
+:root {
+  /* Spacing - 컴팩트 디자인 */
+  --section-padding: 12px;        /* 섹션 내부 패딩 */
+  --section-gap: 12px;            /* 섹션 간 간격 */
+  --section-title-gap: 12px;      /* 타이틀 하단 간격 */
+
+  /* Typography */
+  --section-title-size: 0.9375rem;  /* 15px */
+  --section-title-weight: 600;      /* semibold */
+  --section-caption-size: 0.8125rem; /* 13px */
+
+  /* Border & Shadow */
+  --section-border-radius: 4px;
+  --section-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+  /* Background */
+  --page-bg-light: #f9fafb;
+  --section-bg-light: #ffffff;
+  --page-bg-dark: #111827;
+  --section-bg-dark: #1f2937;
+}
 ```
 
 ---
@@ -344,12 +420,12 @@ packages/ui/src/layouts/
 
 ### 5.2 섹션 템플릿 선택 기준
 
-| 화면 유형 | 추천 템플릿 | 이유 |
-|-----------|-------------|------|
-| 목록 + 상세 | MasterDetailLayout | 선택과 상세 보기의 자연스러운 흐름 |
-| 대시보드 | GridLayout | 여러 위젯의 균형잡힌 배치 |
-| 문서/폼 | SingleColumnLayout | 읽기 편한 너비 유지 |
-| 복잡한 관리 화면 | ThreeColumnLayout | 다단계 네비게이션 지원 |
+| 화면 유형 | 추천 템플릿 | 슬롯 구성 | 이유 |
+|-----------|-------------|-----------|------|
+| 목록 + 상세 | MasterDetailSection | Title + MasterPanel + DetailPanel | 선택과 상세 보기의 자연스러운 흐름 |
+| 대시보드 | GridSection | Title + Item (role별) | 여러 위젯의 균형잡힌 배치 |
+| 문서/폼 | SingleColumnSection | Title + Content (type별) | 읽기 편한 너비 유지 |
+| 복잡한 관리 화면 | ThreeColumnSection | Title + NavigationPanel + MainPanel + WidgetPanel | 다단계 네비게이션 지원 |
 
 ---
 
@@ -357,14 +433,16 @@ packages/ui/src/layouts/
 
 ```typescript
 // 섹션 템플릿은 반응형을 기본 지원해야 함
-<MasterDetailLayout
+<MasterDetailSection
   ratio={[3, 7]}
+  gap={1.5}
   breakpoint="md"
   mobileLayout="stack"  // 모바일에서는 상하 배치
 >
-  <MasterPanel>...</MasterPanel>
-  <DetailPanel>...</DetailPanel>
-</MasterDetailLayout>
+  <MasterDetailSection.Title count={10}>사용자 관리</MasterDetailSection.Title>
+  <MasterDetailSection.MasterPanel>...</MasterDetailSection.MasterPanel>
+  <MasterDetailSection.DetailPanel>...</MasterDetailSection.DetailPanel>
+</MasterDetailSection>
 ```
 
 ---
@@ -381,7 +459,24 @@ packages/ui/src/layouts/
 **레이아웃 아키텍처 3계층:**
 
 1. **페이지 템플릿**: 전체 구조 (Header, Sidebar, Main, Footer)
-2. **섹션 템플릿**: Main 내부 영역 분할 (좌우, 그리드, 단일 등)
+2. **섹션 템플릿**: Main 내부 영역 분할
+   - **공통**: SectionTitle (타이틀 + 메타 정보)
+   - **용도별**: 각 템플릿 특성에 맞는 슬롯 (MasterPanel, NavigationPanel 등)
 3. **컴포넌트**: 실제 UI 요소 (Table, Card, Form 등)
+
+**디자인 원칙 (현대적 스타일):**
+- 패딩: 12px (컴팩트)
+- 간격: 12px
+- 타이틀: 15px semibold
+- 보조 텍스트: 13px
+- **그림자**: 미묘한 shadow (Tailwind CSS shadow-sm 스타일)
+- **border-radius**: 4px
+- **배경색**: 페이지 `#f9fafb` / 섹션 `#ffffff` (라이트 모드)
+
+**4가지 섹션 템플릿:**
+1. **MasterDetailSection**: 목록 + 상세 (Title + MasterPanel + DetailPanel)
+2. **ThreeColumnSection**: 3단 분할 (Title + NavigationPanel + MainPanel + WidgetPanel)
+3. **GridSection**: 그리드 배치 (Title + Item with role)
+4. **SingleColumnSection**: 단일 영역 (Title + Content with type)
 
 이 구조를 따르면 일관성 있고 유지보수 가능한 레이아웃 시스템을 구축할 수 있습니다.
