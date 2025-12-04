@@ -2,6 +2,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { AppLayout } from '@/app/layout/AppLayout'
 import { DashboardPage } from '@/pages/DashboardPage'
 import { DataHubPage } from '@/pages/DataHubPage'
+import { CompaniesPage } from '@/pages/CompaniesPage'
+import { DataSourcesPage } from '@/pages/DataSourcesPage'
+import { CategoriesPage } from '@/pages/CategoriesPage'
+import { ResourcesPage } from '@/pages/ResourcesPage'
 import { PipelinePage } from '@/pages/PipelinePage'
 import { CatalogPage } from '@/pages/CatalogPage'
 import { QualityPage } from '@/pages/QualityPage'
@@ -25,6 +29,22 @@ const router = createBrowserRouter([
       {
         path: 'datahub',
         element: <DataHubPage />,
+      },
+      {
+        path: 'datahub/companies',
+        element: <CompaniesPage />,
+      },
+      {
+        path: 'datahub/datasources',
+        element: <DataSourcesPage />,
+      },
+      {
+        path: 'datahub/categories',
+        element: <CategoriesPage />,
+      },
+      {
+        path: 'datahub/resources',
+        element: <ResourcesPage />,
       },
       {
         path: 'pipeline',

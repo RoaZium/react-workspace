@@ -24,7 +24,8 @@
       "Bash(timeout 10 bash -c 'while ! netstat -an | findstr \"\"5173.*LISTENING\"\" > /dev/null 2>&1; do sleep 1; done')",
       "Bash(del \"d:\\repos\\react-workspace\\packages\\ui\\src\\layouts\\wireframes\\ThreeColumnSplitLayout.tsx\")",
       "Bash(del \"d:\\repos\\react-workspace\\packages\\ui\\src\\layouts\\wireframes\\MasterDetailLayout.tsx\")",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": []

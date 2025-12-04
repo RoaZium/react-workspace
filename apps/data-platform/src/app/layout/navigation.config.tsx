@@ -8,6 +8,10 @@ import ViewColumnIcon from '@mui/icons-material/ViewColumn'
 import ViewStreamIcon from '@mui/icons-material/ViewStream'
 import SearchIcon from '@mui/icons-material/Search'
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined'
+import BusinessIcon from '@mui/icons-material/Business'
+import CloudIcon from '@mui/icons-material/Cloud'
+import CategoryIcon from '@mui/icons-material/Category'
+import DescriptionIcon from '@mui/icons-material/Description'
 import type { LayoutConfig } from '@workspace/ui'
 
 /**
@@ -45,6 +49,10 @@ export const layoutConfig: LayoutConfig = {
     ],
     datahub: [
       { label: '데이터 허브 홈', path: '/datahub', icon: <StorageIcon /> },
+      { label: '회사', path: '/datahub/companies', icon: <BusinessIcon /> },
+      { label: '데이터 소스', path: '/datahub/datasources', icon: <CloudIcon /> },
+      { label: '카테고리', path: '/datahub/categories', icon: <CategoryIcon /> },
+      { label: '리소스', path: '/datahub/resources', icon: <DescriptionIcon /> },
     ],
     pipeline: [
       { label: '파이프라인 홈', path: '/pipeline', icon: <AccountTreeIcon /> },
