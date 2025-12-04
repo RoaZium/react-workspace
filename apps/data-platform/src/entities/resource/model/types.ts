@@ -28,6 +28,9 @@ export interface Resource {
   /** 리소스 명칭 */
   name: string
 
+  /** 리소스 설명 */
+  description?: string
+
   /** 운영 속성 (임계점, MQTT 코드 등 기능적 사양) */
   attributes: ResourceAttributes
 
@@ -47,7 +50,7 @@ export interface Resource {
  */
 export interface ResourceAttributes {
   /** 리소스 타입 */
-  resourceType?: 'sensor' | 'api' | 'database' | 'file' | 'stream' | 'batch' | 'manual'
+  resourceType?: 'sensor' | 'api' | 'database' | 'file' | 'stream' | 'batch' | 'manual' | 'counter' | 'hvac' | 'meter' | 'lighting' | 'data_stream' | 'equipment' | 'scanner' | 'inspection'
 
   /** 센서 설정 (리소스 타입이 sensor인 경우) */
   sensor?: {

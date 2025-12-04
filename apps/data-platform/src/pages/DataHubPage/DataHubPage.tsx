@@ -1,30 +1,61 @@
 import { useState } from 'react'
-import { Box, Typography } from '@mui/material'
-import { PageLayout, PageHeader, PageContent, TwoColumnPlusSplitLayout } from '@workspace/ui'
-import { useDataSources, DataSourceTable } from '@/entities/data-source'
-import { useCategoriesByDataSource, CategoryTable } from '@/entities/category'
-import { useResourcesByCategory, ResourceTable, ResourceDetail } from '@/entities/resource'
+import { Box } from '@mui/material'
+import { PageLayout, PageHeader, PageContent } from '@workspace/ui'
+import { useDataSources } from '@/entities/data-source'
+import { useCategories } from '@/entities/category'
+import { useResources } from '@/entities/resource'
 import type { DataSource } from '@/entities/data-source'
 import type { Category } from '@/entities/category'
 import type { Resource } from '@/entities/resource'
+import { DataHubTree } from './components/DataHubTree'
+import { DetailPanel } from './components/DetailPanel'
 
 /**
- * Data Hub 페이지 (FSD + DDD)
+ * Data Hub 페이지 (최적화 버전)
  *
- * 역할: 조합만 담당 (Composition Layer)
- * - entities의 UI 컴포넌트 조합
- * - entities의 API hooks 사용
- * - 페이지 레벨 상태 관리 (선택 상태)
- * - @workspace/ui의 TwoColumnPlusSplitLayout 와이어프레임 사용 (2개 전체 높이 열 + 1개 분할 열)
+ * 역할: Data Hub 전용 최적화 UI
+ * - 계층 구조를 트리 형태로 표시 (Master-Detail 패턴)
+ * - 검색 및 필터링 기능
+ * - 상세 정보 패널
+ * - 공통 레이아웃을 사용하지 않고 독립적인 최적 UI 구현
  */
 export function DataHubPage() {
   const [selectedDataSource, setSelectedDataSource] = useState<DataSource | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null)
   const [selectedResource, setSelectedResource] = useState<Resource | null>(null)
+  const [detailType, setDetailType] = useState<'dataSource' | 'category' | 'resource' | null>(null)
 
+  // 모든 데이터 한번에 로드 (트리 구조를 위해)
   const { data: dataSources = [], isLoading: isLoadingDS } = useDataSources()
-  const { data: categories = [] } = useCategoriesByDataSource(selectedDataSource?.internalId)
-  const { data: resources = [] } = useResourcesByCategory(selectedCategory?.internalId)
+  const { data: categories = [], isLoading: isLoadingCat } = useCategories()
+  const { data: resources = [], isLoading: isLoadingRes } = useResources()
+
+  const handleSelectDataSource = (ds: DataSource) => {
+    setSelectedDataSource(ds)
+    setSelectedCategory(null)
+    setSelectedResource(null)
+    setDetailType('dataSource')
+  }
+
+  const handleSelectCategory = (cat: Category) => {
+    setSelectedCategory(cat)
+    setSelectedResource(null)
+    setDetailType('category')
+  }
+
+  const handleSelectResource = (res: Resource) => {
+    setSelectedResource(res)
+    setDetailType('resource')
+  }
+
+  const getDetailData = () => {
+    if (detailType === 'dataSource') return selectedDataSource
+    if (detailType === 'category') return selectedCategory
+    if (detailType === 'resource') return selectedResource
+    return null
+  }
+
+  const isLoading = isLoadingDS || isLoadingCat || isLoadingRes
 
   return (
     <PageLayout>
@@ -34,67 +65,34 @@ export function DataHubPage() {
       />
 
       <PageContent>
-        <TwoColumnPlusSplitLayout column1Width="25%" column2Width="25%" splitTopHeight="40%">
-          {/* Column 1: 데이터소스 (전체 높이) */}
-          <TwoColumnPlusSplitLayout.Column1 title="데이터소스" count={dataSources.length}>
-            <DataSourceTable
-              data={dataSources}
-              isLoading={isLoadingDS}
-              selectedId={selectedDataSource?.internalId}
-              onRowClick={(ds) => {
-                setSelectedDataSource(ds)
-                setSelectedCategory(null)
-                setSelectedResource(null)
-              }}
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '400px 1fr',
+            gap: 2,
+            height: '100%',
+          }}
+        >
+          {/* 왼쪽: 계층 구조 트리 */}
+          <Box sx={{ height: '100%', overflow: 'hidden' }}>
+            <DataHubTree
+              dataSources={dataSources}
+              categories={categories}
+              resources={resources}
+              selectedDataSource={selectedDataSource}
+              selectedCategory={selectedCategory}
+              selectedResource={selectedResource}
+              onSelectDataSource={handleSelectDataSource}
+              onSelectCategory={handleSelectCategory}
+              onSelectResource={handleSelectResource}
             />
-          </TwoColumnPlusSplitLayout.Column1>
+          </Box>
 
-          {/* Column 2: 카테고리 (전체 높이) */}
-          <TwoColumnPlusSplitLayout.Column2 title="카테고리" count={categories.length}>
-            {!selectedDataSource ? (
-              <Typography color="text.secondary" textAlign="center" sx={{ mt: 4 }}>
-                데이터소스를 선택하세요
-              </Typography>
-            ) : (
-              <CategoryTable
-                data={categories}
-                selectedRow={selectedCategory}
-                onRowClick={(cat) => {
-                  setSelectedCategory(cat)
-                  setSelectedResource(null)
-                }}
-              />
-            )}
-          </TwoColumnPlusSplitLayout.Column2>
-
-          {/* 분할 영역 상단: 리소스 목록 */}
-          <TwoColumnPlusSplitLayout.SplitTop title="리소스" count={resources.length}>
-            {!selectedCategory ? (
-              <Typography color="text.secondary" textAlign="center" sx={{ mt: 4 }}>
-                카테고리를 선택하세요
-              </Typography>
-            ) : (
-              <ResourceTable
-                data={resources}
-                selectedRow={selectedResource}
-                onRowClick={setSelectedResource}
-              />
-            )}
-          </TwoColumnPlusSplitLayout.SplitTop>
-
-          {/* 분할 영역 하단: 리소스 상세 - 항상 표시 */}
-          <TwoColumnPlusSplitLayout.SplitBottom title="리소스 상세" emptyMessage="리소스를 선택하세요">
-            {selectedResource && (
-              <Box sx={{ p: 2 }}>
-                <ResourceDetail
-                  resource={selectedResource}
-                  dataSourceName={selectedDataSource?.name}
-                  categoryName={selectedCategory?.name}
-                />
-              </Box>
-            )}
-          </TwoColumnPlusSplitLayout.SplitBottom>
-        </TwoColumnPlusSplitLayout>
+          {/* 오른쪽: 상세 정보 패널 */}
+          <Box sx={{ height: '100%', overflow: 'hidden' }}>
+            <DetailPanel type={detailType} data={getDetailData()} />
+          </Box>
+        </Box>
       </PageContent>
     </PageLayout>
   )
