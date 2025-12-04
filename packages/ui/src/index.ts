@@ -5,10 +5,9 @@
  */
 
 // ============================================
-// Shared Layer (FSD)
+// Layouts
 // ============================================
 
-// Layouts (shared/ui/layouts) - Legacy exports
 export {
   // App Shell
   AppShell,
@@ -32,9 +31,9 @@ export {
   // Special
   TabLayout,
   SearchLayout,
-} from './shared/ui/layouts'
+} from './layouts'
 
-export type { LayoutConfig, NavItem, SidebarSection } from './shared/ui/layouts'
+export type { LayoutConfig, NavItem, SidebarSection } from './layouts'
 
 // ============================================
 // New Layout Architecture
@@ -73,17 +72,17 @@ export { MuiThemeProvider } from './providers'
 // ============================================
 
 // @deprecated - Use AppShell
-export { AppShell as AppLayout } from './shared/ui/layouts'
+export { AppShell as AppLayout } from './layouts'
 
 // @deprecated - Use Page
-export { Page as PageLayout, Page as PageTemplate } from './shared/ui/layouts'
+export { Page as PageLayout, Page as PageTemplate } from './layouts'
 // PageHeader and PageContent are already exported above
 
 // @deprecated - Use Grid
-export { Grid as GridLayout } from './shared/ui/layouts'
+export { Grid as GridLayout } from './layouts'
 
 // @deprecated - Use ThreeColumn
-export { ThreeColumn as ThreeColumnLayout } from './shared/ui/layouts'
+export { ThreeColumn as ThreeColumnLayout } from './layouts'
 
 // @deprecated - Use Stack or Grid
-export { Stack as SingleColumnLayout } from './shared/ui/layouts'
+export { Stack as SingleColumnLayout } from './layouts'

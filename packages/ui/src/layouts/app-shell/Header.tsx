@@ -24,7 +24,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import { NavItem } from './types'
 import { useSidebar } from './SidebarContext'
-import { useTheme } from '../../../../contexts/ThemeContext'
+import { useTheme } from '../../contexts/ThemeContext'
 
 interface HeaderProps {
   appTitle: string
