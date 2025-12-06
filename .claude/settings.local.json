@@ -25,7 +25,12 @@
       "Bash(del \"d:\\repos\\react-workspace\\packages\\ui\\src\\layouts\\wireframes\\ThreeColumnSplitLayout.tsx\")",
       "Bash(del \"d:\\repos\\react-workspace\\packages\\ui\\src\\layouts\\wireframes\\MasterDetailLayout.tsx\")",
       "Bash(npm run build:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(claude mcp list:*)",
+      "Bash(claude mcp logs:*)",
+      "Bash(claude mcp --help:*)",
+      "Bash(npx chrome-devtools-mcp@latest:*)",
+      "Bash(node --version:*)"
     ],
     "deny": [],
     "ask": []

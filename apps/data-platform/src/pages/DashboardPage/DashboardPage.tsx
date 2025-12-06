@@ -5,41 +5,41 @@ export function DashboardPage() {
   return (
     <PageLayout>
       <PageHeader
-        title="Dashboard"
-        description="데이터 플랫폼 전체 현황을 확인하세요"
+        title="📊 Dashboard"
+        description="데이터 허브 전체 현황을 확인하세요"
       />
 
       <PageContent>
         <GridLayout columns={4} gap="medium">
           <StatCard
-            icon="🗄️"
+            icon="🗂️"
             value="24"
-            label="Active Data Hubs"
+            label="DataSource"
             trend={{ value: '+3', isPositive: true }}
           />
           <StatCard
-            icon="🔄"
-            value="12"
-            label="Running Pipelines"
-            trend={{ value: '+2', isPositive: true }}
-          />
-          <StatCard
-            icon="📚"
+            icon="📁"
             value="156"
-            label="Catalog Items"
+            label="Category"
             trend={{ value: '+12', isPositive: true }}
           />
           <StatCard
+            icon="📄"
+            value="1,247"
+            label="Resource"
+            trend={{ value: '+89', isPositive: true }}
+          />
+          <StatCard
             icon="✅"
-            value="98.5%"
-            label="Data Quality Score"
-            trend={{ value: '+0.3%', isPositive: true }}
+            value="96.8%"
+            label="활성률"
+            trend={{ value: '+1.2%', isPositive: true }}
           />
         </GridLayout>
 
         <Card>
           <Typography variant="h5" gutterBottom fontWeight={600}>
-            Recent Activity
+            Recent Activities
           </Typography>
           <Stack spacing={2} sx={{ mt: 2 }}>
             <Box>
@@ -47,7 +47,7 @@ export function DashboardPage() {
                 5분 전
               </Typography>
               <Typography variant="body2">
-                Pipeline "Sales ETL" 실행 완료
+                DataSource "IoT Sensor Hub" 생성됨
               </Typography>
             </Box>
             <Box>
@@ -55,7 +55,7 @@ export function DashboardPage() {
                 15분 전
               </Typography>
               <Typography variant="body2">
-                Data Hub "MySQL Production" 연결 성공
+                Category "환경 센서" 하위에 Resource 12개 추가됨
               </Typography>
             </Box>
             <Box>
@@ -63,11 +63,47 @@ export function DashboardPage() {
                 1시간 전
               </Typography>
               <Typography variant="body2">
-                Data Quality 검사 완료
+                DataSource "ERP System" 활성화됨
+              </Typography>
+            </Box>
+            <Box>
+              <Typography variant="caption" color="text.secondary">
+                2시간 전
+              </Typography>
+              <Typography variant="body2">
+                Resource "온도센서-101" 메타데이터 업데이트됨
               </Typography>
             </Box>
           </Stack>
         </Card>
+
+        <GridLayout columns={2} gap="medium">
+          <Card>
+            <Typography variant="h6" gutterBottom fontWeight={600}>
+              Resource Distribution
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              카테고리별 리소스 분포 차트 영역
+            </Typography>
+          </Card>
+
+          <Card>
+            <Typography variant="h6" gutterBottom fontWeight={600}>
+              Quick Links
+            </Typography>
+            <Stack spacing={1} sx={{ mt: 2 }}>
+              <Typography variant="body2" sx={{ cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>
+                → DataSource 관리
+              </Typography>
+              <Typography variant="body2" sx={{ cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>
+                → Category 관리
+              </Typography>
+              <Typography variant="body2" sx={{ cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>
+                → Resource 관리
+              </Typography>
+            </Stack>
+          </Card>
+        </GridLayout>
       </PageContent>
     </PageLayout>
   )
