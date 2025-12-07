@@ -1,1 +1,1 @@
-export { DataHubPage } from './DataHubPage'
+export { DataHub } from './DataHub'

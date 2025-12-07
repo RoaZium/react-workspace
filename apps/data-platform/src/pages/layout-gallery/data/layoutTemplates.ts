@@ -1,10 +1,10 @@
 import type { LayoutTemplate } from '../types'
-import { BasicLayoutPage } from '../demos/basic'
-import { TwoColumnLayoutPage } from '../demos/two-column'
-import { ThreeColumnLayoutPage } from '../demos/three-column'
-import { FourColumnLayoutPage } from '../demos/four-column'
-import { ThreeRowsLayoutPage } from '../demos/three-rows'
-import { SearchLayoutPage } from '../demos/search'
+import { BasicLayout } from '../demos/basic'
+import { TwoColumnLayout } from '../demos/two-column'
+import { ThreeColumnLayout } from '../demos/three-column'
+import { FourColumnLayout } from '../demos/four-column'
+import { ThreeRowsLayout } from '../demos/three-rows'
+import { SearchLayout } from '../demos/search'
 
 export const layoutTemplates: LayoutTemplate[] = [
   {
@@ -13,7 +13,7 @@ export const layoutTemplates: LayoutTemplate[] = [
     description: '단순하고 깔끔한 기본 섹션 레이아웃으로, 빠른 프로토타이핑에 적합합니다.',
     category: 'basic',
     thumbnail: '/thumbnails/basic-layout.png',
-    component: BasicLayoutPage,
+    component: BasicLayout,
     code: `import { BasicLayout } from '@workspace/ui/layouts'
 
 export function BasicLayoutPage() {
@@ -35,7 +35,7 @@ export function BasicLayoutPage() {
     description: '콘텐츠를 두 개의 컬럼으로 나누어 표시하는 레이아웃입니다.',
     category: 'column',
     thumbnail: '/thumbnails/two-column-layout.png',
-    component: TwoColumnLayoutPage,
+    component: TwoColumnLayout,
     code: `import { MultiColumnLayout } from '@workspace/ui/layouts'
 
 export function TwoColumnLayoutPage() {
@@ -56,7 +56,7 @@ export function TwoColumnLayoutPage() {
     description: '콘텐츠를 세 개의 컬럼으로 균등하게 분할하여 표시합니다.',
     category: 'column',
     thumbnail: '/thumbnails/three-column-layout.png',
-    component: ThreeColumnLayoutPage,
+    component: ThreeColumnLayout,
     code: `import { MultiColumnLayout } from '@workspace/ui/layouts'
 
 export function ThreeColumnLayoutPage() {
@@ -78,7 +78,7 @@ export function ThreeColumnLayoutPage() {
     description: '네 개의 컬럼으로 분할하여 많은 정보를 효율적으로 표시합니다.',
     category: 'column',
     thumbnail: '/thumbnails/four-column-layout.png',
-    component: FourColumnLayoutPage,
+    component: FourColumnLayout,
     code: `import { MultiColumnLayout } from '@workspace/ui/layouts'
 
 export function FourColumnLayoutPage() {
@@ -101,7 +101,7 @@ export function FourColumnLayoutPage() {
     description: '헤더, 콘텐츠, 푸터로 구성된 전통적인 3단 레이아웃입니다.',
     category: 'row',
     thumbnail: '/thumbnails/three-rows-layout.png',
-    component: ThreeRowsLayoutPage,
+    component: ThreeRowsLayout,
     code: `import { RowLayout } from '@workspace/ui/layouts'
 
 export function ThreeRowsLayoutPage() {
@@ -123,7 +123,7 @@ export function ThreeRowsLayoutPage() {
     description: '검색 필터와 결과 목록을 효율적으로 배치한 레이아웃입니다.',
     category: 'search',
     thumbnail: '/thumbnails/search-layout.png',
-    component: BasicLayoutPage,
+    component: SearchLayout,
     code: `import { SearchLayout } from '@workspace/ui/layouts'
 
 export function SearchLayoutPage() {

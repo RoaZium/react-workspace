@@ -1,6 +1,6 @@
 import { Page, PageHeader, PageContent, Stack, Card } from '@workspace/ui'
 
-export function ThreeRowsLayoutPage() {
+export function ThreeRowsLayout() {
   return (
     <Page>
       <PageHeader

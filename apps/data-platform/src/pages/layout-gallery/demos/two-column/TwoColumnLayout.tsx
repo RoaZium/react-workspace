@@ -1,6 +1,6 @@
 import { Page, PageHeader, PageContent, ThreeColumn, Card } from '@workspace/ui'
 
-export function TwoColumnLayoutPage() {
+export function TwoColumnLayout() {
   return (
     <Page>
       <PageHeader

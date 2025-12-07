@@ -52,3 +52,29 @@ src/
 ├── entities/     # 도메인 엔티티
 └── shared/       # 공통 코드
 ```
+
+## Naming Conventions
+
+### Components & Pages
+- **Pages**: `Dashboard`, `DataHub` - PascalCase, no `Page` suffix (folder path already indicates pages/)
+- **Components**: `UserCard`, `DataTable` - PascalCase
+- **Component files**: Match component name (e.g., `Dashboard.tsx` exports `Dashboard`)
+
+### Functions & Hooks
+- **Custom Hooks**: `useDataSources`, `useAuth` - camelCase with `use` prefix
+- **Utility functions**: `formatDate`, `parseJson` - camelCase
+- **Event handlers**: `handleClick`, `handleSubmit` - camelCase with `handle` prefix
+
+### Types & Interfaces
+- **Types/Interfaces**: `User`, `DataSourceConfig` - PascalCase
+- **Enums**: `UserRole`, `Status` - PascalCase
+
+### Files & Folders
+- **Component folders**: `dashboard/`, `data-hub/` - kebab-case
+- **Component files**: `Dashboard.tsx`, `DataHub.tsx` - PascalCase (match component name)
+- **Utility files**: `format-date.ts`, `api-client.ts` - kebab-case
+- **Index files**: `index.ts` - for re-exports only
+
+### Constants
+- **Global constants**: `API_BASE_URL`, `MAX_RETRY_COUNT` - UPPER_SNAKE_CASE
+- **Config objects**: `appConfig`, `themeConfig` - camelCase

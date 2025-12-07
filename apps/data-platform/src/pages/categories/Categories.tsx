@@ -33,7 +33,7 @@ const mockCategories = [
   { id: 'cat-2', code: 'CAT002', name: '전력 센서', dsId: 'ds-1', dsName: 'IoT Sensor Hub', isActive: true, resourceCount: 12 },
 ]
 
-export function CategoriesPage() {
+export function Categories() {
   const [searchValue, setSearchValue] = useState('')
   const [filters, setFilters] = useState<Record<string, any>>({})
   const [selectedCategory, setSelectedCategory] = useState<typeof mockCategories[0] | null>(null)

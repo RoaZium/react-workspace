@@ -1,1 +1,1 @@
-export { TwoColumnLayoutPage } from './TwoColumnLayoutPage'
+export { TwoColumnLayout } from './TwoColumnLayout'

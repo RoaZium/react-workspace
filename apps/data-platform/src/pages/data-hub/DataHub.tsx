@@ -19,7 +19,7 @@ import { DetailPanel } from './components/DetailPanel'
  * - 상세 정보 패널
  * - 공통 레이아웃을 사용하지 않고 독립적인 최적 UI 구현
  */
-export function DataHubPage() {
+export function DataHub() {
   const [selectedDataSource, setSelectedDataSource] = useState<DataSource | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null)
   const [selectedResource, setSelectedResource] = useState<Resource | null>(null)

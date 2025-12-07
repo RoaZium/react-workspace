@@ -13,7 +13,7 @@ const mockSchedules = [
   { id: 3, pipeline: 'Weekly Backup', schedule: 'Every Monday', nextRun: '다음주 월요일' },
 ]
 
-export function PipelinePage() {
+export function Pipeline() {
   const pipelineColumns = [
     { key: 'name', header: 'Pipeline Name', width: '30%' },
     {

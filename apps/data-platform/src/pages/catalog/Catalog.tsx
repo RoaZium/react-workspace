@@ -19,7 +19,7 @@ import { Box, Typography, Chip, Stack } from '@mui/material'
  *                → MasterDetailLayout (목록 + 상세)
  * 3. 컴포넌트: Table, Card 등
  */
-export function CatalogPage() {
+export function Catalog() {
   // Mock data for demonstration
   const catalogItems = [
     { id: 1, name: 'users_table', type: 'Table', database: 'production', tags: ['PII', 'Customer'] },

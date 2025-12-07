@@ -1,7 +1,7 @@
 import { PageLayout, PageHeader, PageContent } from '@workspace/ui'
 import { Box, Typography } from '@mui/material'
 
-export function CompaniesPage() {
+export function Companies() {
   return (
     <PageLayout>
       <PageHeader

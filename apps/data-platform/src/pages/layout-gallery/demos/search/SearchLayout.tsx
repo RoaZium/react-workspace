@@ -1,7 +1,7 @@
-import { Page, PageHeader, PageContent, SearchLayout, Card, Table, Button } from '@workspace/ui'
+import { Page, PageHeader, PageContent, SearchLayout as SearchLayoutComponent, Card, Table, Button } from '@workspace/ui'
 import { Box } from '@mui/material'
 
-export function SearchLayoutPage() {
+export function SearchLayout() {
   const mockData = [
     { id: 1, name: '항목 1', category: '카테고리 A', status: '활성' },
     { id: 2, name: '항목 2', category: '카테고리 B', status: '대기' },
@@ -16,8 +16,8 @@ export function SearchLayoutPage() {
       />
 
       <PageContent>
-        <SearchLayout>
-          <SearchLayout.Condition>
+        <SearchLayoutComponent>
+          <SearchLayoutComponent.Condition>
             <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
               <input
                 type="text"
@@ -36,9 +36,9 @@ export function SearchLayoutPage() {
               </select>
               <Button variant="contained">검색</Button>
             </Box>
-          </SearchLayout.Condition>
+          </SearchLayoutComponent.Condition>
 
-          <SearchLayout.Result>
+          <SearchLayoutComponent.Result>
             <Card title="검색 결과">
               <Table>
                 <thead>
@@ -59,8 +59,8 @@ export function SearchLayoutPage() {
                 </tbody>
               </Table>
             </Card>
-          </SearchLayout.Result>
-        </SearchLayout>
+          </SearchLayoutComponent.Result>
+        </SearchLayoutComponent>
       </PageContent>
     </Page>
   )

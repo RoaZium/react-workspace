@@ -12,7 +12,7 @@ const mockDataSources = [
   { id: 4, code: 'DS004', name: 'Legacy MQTT Broker', userId: 'user-003', isActive: true, createdAt: '2024-12-20' },
 ]
 
-export function DataSourcesPage() {
+export function DataSources() {
   const [searchValue, setSearchValue] = useState('')
   const [filters, setFilters] = useState<Record<string, any>>({})
   const [selectedDataSource, setSelectedDataSource] = useState<typeof mockDataSources[0] | null>(null)

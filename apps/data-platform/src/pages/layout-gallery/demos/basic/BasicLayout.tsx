@@ -1,6 +1,6 @@
 import { Page, PageHeader, PageContent, Card } from '@workspace/ui'
 
-export function BasicLayoutPage() {
+export function BasicLayout() {
   return (
     <Page>
       <PageHeader

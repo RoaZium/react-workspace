@@ -1,1 +1,1 @@
-export { LayoutGalleryPage } from './LayoutGalleryPage'
+export { LayoutGallery } from './LayoutGallery'

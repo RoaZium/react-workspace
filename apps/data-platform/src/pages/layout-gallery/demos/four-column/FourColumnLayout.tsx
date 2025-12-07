@@ -1,6 +1,6 @@
 import { Page, PageHeader, PageContent, Grid, StatCard } from '@workspace/ui'
 
-export function FourColumnLayoutPage() {
+export function FourColumnLayout() {
   return (
     <Page>
       <PageHeader

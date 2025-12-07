@@ -19,7 +19,7 @@ import { Box, LinearProgress, Typography, Chip } from '@mui/material'
  *                → GridLayout (통계 카드)
  * 3. 컴포넌트: StatCard, Table, Card 등
  */
-export function QualityPage() {
+export function Quality() {
   // Mock data for demonstration
   const qualityRules = [
     { id: 1, name: 'Null Check - Email', table: 'users', status: 'Pass', lastRun: '2024-12-03 10:30' },

@@ -30,7 +30,8 @@
       "Bash(claude mcp logs:*)",
       "Bash(claude mcp --help:*)",
       "Bash(npx chrome-devtools-mcp@latest:*)",
-      "Bash(node --version:*)"
+      "Bash(node --version:*)",
+      "Bash(git mv:*)"
     ],
     "deny": [],
     "ask": []

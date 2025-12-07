@@ -1,1 +1,1 @@
-export { QualityPage } from './QualityPage'
+export { Quality } from './Quality'

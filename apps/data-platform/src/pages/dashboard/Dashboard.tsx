@@ -1,11 +1,11 @@
 import { PageLayout, PageHeader, PageContent, GridLayout, StatCard, Card } from '@workspace/ui'
 import { Typography, Stack, Box } from '@mui/material'
 
-export function DashboardPage() {
+export function Dashboard() {
   return (
     <PageLayout>
       <PageHeader
-        title="📊 Dashboard"
+        title="📊 데이터 허브"
         description="데이터 허브 전체 현황을 확인하세요"
       />
 

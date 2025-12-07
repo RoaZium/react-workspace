@@ -6,7 +6,7 @@ import { CategoryFilter } from './components/CategoryFilter'
 import { LayoutPreviewCard } from './components/LayoutPreviewCard'
 import './LayoutGalleryPage.css'
 
-export function LayoutGalleryPage() {
+export function LayoutGallery() {
   const navigate = useNavigate()
   const [selectedCategory, setSelectedCategory] = useState<LayoutCategory>('all')
 

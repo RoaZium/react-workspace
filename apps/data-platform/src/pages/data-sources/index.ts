@@ -1,1 +1,1 @@
-export { DataSourcesPage } from './DataSourcesPage'
+export { DataSources } from './DataSources'

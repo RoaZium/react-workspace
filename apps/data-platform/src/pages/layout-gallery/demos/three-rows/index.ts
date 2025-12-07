@@ -1,1 +1,1 @@
-export { ThreeRowsLayoutPage } from './ThreeRowsLayoutPage'
+export { ThreeRowsLayout } from './ThreeRowsLayout'

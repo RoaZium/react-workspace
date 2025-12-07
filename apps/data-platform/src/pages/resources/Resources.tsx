@@ -127,7 +127,7 @@ const mockResources = [
   },
 ]
 
-export function ResourcesPage() {
+export function Resources() {
   const [searchValue, setSearchValue] = useState('')
   const [filters, setFilters] = useState<Record<string, any>>({})
   const [selectedResource, setSelectedResource] = useState<typeof mockResources[0] | null>(null)

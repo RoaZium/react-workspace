@@ -1,21 +1,21 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import { AppLayout } from '@/app/layout/AppLayout'
-import { DashboardPage } from '@/pages/dashboard'
-import { DataHubPage } from '@/pages/data-hub'
-import { CompaniesPage } from '@/pages/companies'
-import { DataSourcesPage } from '@/pages/data-sources'
-import { CategoriesPage } from '@/pages/categories'
-import { ResourcesPage } from '@/pages/resources'
-import { PipelinePage } from '@/pages/pipeline'
-import { CatalogPage } from '@/pages/catalog'
-import { QualityPage } from '@/pages/quality'
-import { LayoutGalleryPage } from '@/pages/layout-gallery'
-import { BasicLayoutPage } from '@/pages/layout-gallery/demos/basic'
-import { TwoColumnLayoutPage } from '@/pages/layout-gallery/demos/two-column'
-import { ThreeColumnLayoutPage } from '@/pages/layout-gallery/demos/three-column'
-import { FourColumnLayoutPage } from '@/pages/layout-gallery/demos/four-column'
-import { ThreeRowsLayoutPage } from '@/pages/layout-gallery/demos/three-rows'
-import { SearchLayoutPage } from '@/pages/layout-gallery/demos/search'
+import { Dashboard } from '@/pages/dashboard'
+import { DataHub } from '@/pages/data-hub'
+import { Companies } from '@/pages/companies'
+import { DataSources } from '@/pages/data-sources'
+import { Categories } from '@/pages/categories'
+import { Resources } from '@/pages/resources'
+import { Pipeline } from '@/pages/pipeline'
+import { Catalog } from '@/pages/catalog'
+import { Quality } from '@/pages/quality'
+import { LayoutGallery } from '@/pages/layout-gallery'
+import { BasicLayout } from '@/pages/layout-gallery/demos/basic'
+import { TwoColumnLayout } from '@/pages/layout-gallery/demos/two-column'
+import { ThreeColumnLayout } from '@/pages/layout-gallery/demos/three-column'
+import { FourColumnLayout } from '@/pages/layout-gallery/demos/four-column'
+import { ThreeRowsLayout } from '@/pages/layout-gallery/demos/three-rows'
+import { SearchLayout } from '@/pages/layout-gallery/demos/search'
 
 const router = createBrowserRouter([
   {
@@ -24,67 +24,71 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardPage />,
+        element: <Navigate to="/datahub" replace />,
       },
       {
         path: 'datahub',
-        element: <DataHubPage />,
+        element: <Dashboard />,
+      },
+      {
+        path: 'datahub/explorer',
+        element: <DataHub />,
       },
       {
         path: 'datahub/companies',
-        element: <CompaniesPage />,
+        element: <Companies />,
       },
       {
         path: 'datahub/datasources',
-        element: <DataSourcesPage />,
+        element: <DataSources />,
       },
       {
         path: 'datahub/categories',
-        element: <CategoriesPage />,
+        element: <Categories />,
       },
       {
         path: 'datahub/resources',
-        element: <ResourcesPage />,
+        element: <Resources />,
       },
       {
         path: 'pipeline',
-        element: <PipelinePage />,
+        element: <Pipeline />,
       },
       {
         path: 'catalog',
-        element: <CatalogPage />,
+        element: <Catalog />,
       },
       {
         path: 'quality',
-        element: <QualityPage />,
+        element: <Quality />,
       },
       {
         path: 'layouts',
-        element: <LayoutGalleryPage />,
+        element: <LayoutGallery />,
       },
       {
         path: 'layouts/basic',
-        element: <BasicLayoutPage />,
+        element: <BasicLayout />,
       },
       {
         path: 'layouts/2column',
-        element: <TwoColumnLayoutPage />,
+        element: <TwoColumnLayout />,
       },
       {
         path: 'layouts/3column',
-        element: <ThreeColumnLayoutPage />,
+        element: <ThreeColumnLayout />,
       },
       {
         path: 'layouts/4column',
-        element: <FourColumnLayoutPage />,
+        element: <FourColumnLayout />,
       },
       {
         path: 'layouts/3rows',
-        element: <ThreeRowsLayoutPage />,
+        element: <ThreeRowsLayout />,
       },
       {
         path: 'layouts/search',
-        element: <SearchLayoutPage />,
+        element: <SearchLayout />,
       },
     ],
   },
