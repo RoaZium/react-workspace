@@ -1,0 +1,1 @@
+export { FourColumnLayoutPage } from './FourColumnLayoutPage'

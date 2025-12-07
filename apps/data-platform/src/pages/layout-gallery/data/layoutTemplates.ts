@@ -1,10 +1,10 @@
 import type { LayoutTemplate } from '../types'
-import { BasicLayoutPage } from '@/pages/layouts/BasicLayoutPage'
-import { TwoColumnLayoutPage } from '@/pages/layouts/TwoColumnLayoutPage'
-import { ThreeColumnLayoutPage } from '@/pages/layouts/ThreeColumnLayoutPage'
-import { FourColumnLayoutPage } from '@/pages/layouts/FourColumnLayoutPage'
-import { ThreeRowsLayoutPage } from '@/pages/layouts/ThreeRowsLayoutPage'
-import { SearchLayoutPage } from '@/pages/layouts/SearchLayoutPage'
+import { BasicLayoutPage } from '../demos/basic'
+import { TwoColumnLayoutPage } from '../demos/two-column'
+import { ThreeColumnLayoutPage } from '../demos/three-column'
+import { FourColumnLayoutPage } from '../demos/four-column'
+import { ThreeRowsLayoutPage } from '../demos/three-rows'
+import { SearchLayoutPage } from '../demos/search'
 
 export const layoutTemplates: LayoutTemplate[] = [
   {
