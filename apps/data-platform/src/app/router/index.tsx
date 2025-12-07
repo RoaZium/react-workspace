@@ -24,11 +24,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/datahub" replace />,
+        element: <Dashboard />,
       },
       {
         path: 'datahub',
-        element: <Dashboard />,
+        element: <DataHub />,
       },
       {
         path: 'datahub/explorer',

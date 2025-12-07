@@ -73,32 +73,6 @@ export function Sidebar({ sidebarMenus }: SidebarProps) {
       }}
     >
       <Toolbar />
-      <List>
-        <ListItem disablePadding>
-          <Tooltip title={isOpen ? '' : '홈'} placement="right">
-            <ListItemButton
-              selected={location.pathname === '/'}
-              onClick={() => navigate('/')}
-              sx={{
-                ...menuItemStyles,
-                justifyContent: isOpen ? 'initial' : 'center',
-                px: isOpen ? 2 : 1.5,
-              }}
-            >
-              <ListItemText
-                primary="홈"
-                sx={{
-                  opacity: isOpen ? 1 : 0,
-                  transition: 'opacity 0.3s ease-in-out',
-                }}
-              />
-            </ListItemButton>
-          </Tooltip>
-        </ListItem>
-      </List>
-
-      <Divider sx={{ borderColor: 'var(--border-color)', opacity: 0.6 }} />
-
       <List
         sx={{
           flex: 1,

@@ -27,6 +27,7 @@ import type { LayoutConfig } from '@workspace/ui'
 export const layoutConfig: LayoutConfig = {
   appTitle: '데이터 플랫폼',
   topNavItems: [
+    { label: '홈', path: '/', icon: <DashboardIcon /> },
     { label: '데이터 허브', path: '/datahub', icon: <StorageIcon /> },
     { label: '파이프라인', path: '/pipeline', icon: <AccountTreeIcon /> },
     { label: '카탈로그', path: '/catalog', icon: <LibraryBooksIcon /> },
@@ -35,7 +36,6 @@ export const layoutConfig: LayoutConfig = {
   ],
   sidebarMenus: {
     layouts: [
-      { label: '개요', path: '/layouts', icon: <ViewQuiltIcon /> },
       { label: '기본 레이아웃', path: '/layouts/basic', icon: <ViewQuiltIcon /> },
       { label: '2단 컬럼', path: '/layouts/2column', icon: <ViewColumnIcon /> },
       { label: '3단 컬럼', path: '/layouts/3column', icon: <ViewColumnIcon /> },
@@ -44,20 +44,13 @@ export const layoutConfig: LayoutConfig = {
       { label: '검색 레이아웃', path: '/layouts/search', icon: <SearchIcon /> },
     ],
     datahub: [
-      { label: '개요', path: '/datahub', icon: <StorageIcon /> },
       { label: '회사', path: '/datahub/companies', icon: <BusinessIcon /> },
       { label: '데이터 소스', path: '/datahub/datasources', icon: <CloudIcon /> },
       { label: '카테고리', path: '/datahub/categories', icon: <CategoryIcon /> },
       { label: '리소스', path: '/datahub/resources', icon: <DescriptionIcon /> },
     ],
-    pipeline: [
-      { label: '개요', path: '/pipeline', icon: <AccountTreeIcon /> },
-    ],
-    catalog: [
-      { label: '개요', path: '/catalog', icon: <LibraryBooksIcon /> },
-    ],
-    quality: [
-      { label: '개요', path: '/quality', icon: <VerifiedIcon /> },
-    ],
+    pipeline: [],
+    catalog: [],
+    quality: [],
   },
 }
