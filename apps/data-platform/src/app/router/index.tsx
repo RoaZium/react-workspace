@@ -6,9 +6,10 @@ import { Companies } from '@/pages/companies'
 import { DataSources } from '@/pages/data-sources'
 import { Categories } from '@/pages/categories'
 import { Resources } from '@/pages/resources'
-import { Pipeline } from '@/pages/pipeline'
-import { Catalog } from '@/pages/catalog'
-import { Quality } from '@/pages/quality'
+import { DataCollection } from '@/pages/data-collection'
+import { DataMonitoring } from '@/pages/data-monitoring'
+import { DashboardStudio } from '@/pages/dashboard-studio'
+import { DataInsights } from '@/pages/data-insights'
 import { LayoutGallery } from '@/pages/layout-gallery'
 import { BasicLayout } from '@/pages/layout-gallery/demos/basic'
 import { TwoColumnLayout } from '@/pages/layout-gallery/demos/two-column'
@@ -52,16 +53,20 @@ const router = createBrowserRouter([
         element: <Resources />,
       },
       {
-        path: 'pipeline',
-        element: <Pipeline />,
+        path: 'data-collection',
+        element: <DataCollection />,
       },
       {
-        path: 'catalog',
-        element: <Catalog />,
+        path: 'data-monitoring',
+        element: <DataMonitoring />,
       },
       {
-        path: 'quality',
-        element: <Quality />,
+        path: 'dashboard-studio',
+        element: <DashboardStudio />,
+      },
+      {
+        path: 'data-insights',
+        element: <DataInsights />,
       },
       {
         path: 'layouts',

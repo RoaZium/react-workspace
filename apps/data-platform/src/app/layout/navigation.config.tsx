@@ -1,13 +1,13 @@
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import StorageIcon from '@mui/icons-material/Storage'
-import AccountTreeIcon from '@mui/icons-material/AccountTree'
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
-import VerifiedIcon from '@mui/icons-material/Verified'
+import CloudUploadIcon from '@mui/icons-material/CloudUpload'
+import MonitorHeartIcon from '@mui/icons-material/MonitorHeart'
+import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard'
+import InsightsIcon from '@mui/icons-material/Insights'
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt'
 import ViewColumnIcon from '@mui/icons-material/ViewColumn'
 import ViewStreamIcon from '@mui/icons-material/ViewStream'
 import SearchIcon from '@mui/icons-material/Search'
-import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined'
 import BusinessIcon from '@mui/icons-material/Business'
 import CloudIcon from '@mui/icons-material/Cloud'
 import CategoryIcon from '@mui/icons-material/Category'
@@ -20,19 +20,21 @@ import type { LayoutConfig } from '@workspace/ui'
  * 도메인 영역:
  * - Dashboard: 통합 모니터링 및 지표
  * - Data Hub: 데이터소스/카테고리/리소스 계층 관리
- * - Pipeline: 데이터 파이프라인 및 ETL/ELT 관리
- * - Catalog: 데이터 자산 검색 및 메타데이터
- * - Quality: 데이터 품질 검증 및 모니터링
+ * - Data Collection: 데이터 수집 및 연동 관리
+ * - Data Monitoring: 데이터 관제 및 실시간 모니터링
+ * - Dashboard Studio: 대시보드 생성 및 편집
+ * - Data Insights: 데이터 분석 및 인사이트
  */
 export const layoutConfig: LayoutConfig = {
   appTitle: '데이터 플랫폼',
   topNavItems: [
     { label: '홈', path: '/', icon: <DashboardIcon /> },
     { label: '데이터 허브', path: '/datahub', icon: <StorageIcon /> },
-    { label: '파이프라인', path: '/pipeline', icon: <AccountTreeIcon /> },
-    { label: '카탈로그', path: '/catalog', icon: <LibraryBooksIcon /> },
-    { label: '품질관리', path: '/quality', icon: <VerifiedIcon /> },
-    { label: '레이아웃', path: '/layouts', icon: <ViewQuiltIcon /> },
+    { label: '데이터 수집', path: '/data-collection', icon: <CloudUploadIcon /> },
+    { label: '데이터 관제', path: '/data-monitoring', icon: <MonitorHeartIcon /> },
+    { label: '대시보드 스튜디오', path: '/dashboard-studio', icon: <SpaceDashboardIcon /> },
+    { label: '데이터 인사이트', path: '/data-insights', icon: <InsightsIcon /> },
+    { label: '레이아웃 갤러리', path: '/layouts', icon: <ViewQuiltIcon /> },
   ],
   sidebarMenus: {
     layouts: [
@@ -49,8 +51,9 @@ export const layoutConfig: LayoutConfig = {
       { label: '카테고리', path: '/datahub/categories', icon: <CategoryIcon /> },
       { label: '리소스', path: '/datahub/resources', icon: <DescriptionIcon /> },
     ],
-    pipeline: [],
-    catalog: [],
-    quality: [],
+    'data-collection': [],
+    'data-monitoring': [],
+    'dashboard-studio': [],
+    'data-insights': [],
   },
 }
