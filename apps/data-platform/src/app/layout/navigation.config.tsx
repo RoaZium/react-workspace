@@ -12,6 +12,7 @@ import BusinessIcon from '@mui/icons-material/Business'
 import CloudIcon from '@mui/icons-material/Cloud'
 import CategoryIcon from '@mui/icons-material/Category'
 import DescriptionIcon from '@mui/icons-material/Description'
+import AccountTreeIcon from '@mui/icons-material/AccountTree'
 import type { LayoutConfig } from '@workspace/ui'
 
 /**
@@ -46,6 +47,8 @@ export const layoutConfig: LayoutConfig = {
       { label: '검색 레이아웃', path: '/layouts/search', icon: <SearchIcon /> },
     ],
     datahub: [
+      { label: 'Overview', path: '/datahub', icon: <DashboardIcon /> },
+      { label: 'Explorer', path: '/datahub/explorer', icon: <AccountTreeIcon /> },
       { label: '회사', path: '/datahub/companies', icon: <BusinessIcon /> },
       { label: '데이터 소스', path: '/datahub/datasources', icon: <CloudIcon /> },
       { label: '카테고리', path: '/datahub/categories', icon: <CategoryIcon /> },

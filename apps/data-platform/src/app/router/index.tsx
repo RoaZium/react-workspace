@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import { AppLayout } from '@/app/layout/AppLayout'
 import { Dashboard } from '@/pages/dashboard'
+import { DataHubOverview } from '@/pages/overview'
 import { DataHub } from '@/pages/data-hub'
 import { Companies } from '@/pages/companies'
 import { DataSources } from '@/pages/data-sources'
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'datahub',
-        element: <DataHub />,
+        element: <DataHubOverview />,
       },
       {
         path: 'datahub/explorer',
