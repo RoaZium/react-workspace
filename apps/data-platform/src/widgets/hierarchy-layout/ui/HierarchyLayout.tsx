@@ -1,5 +1,5 @@
 import { PageLayout, PageHeader, PageContent, Card, Table } from '@workspace/ui'
-import type { HierarchyLayoutProps } from './types'
+import type { HierarchyLayoutProps } from '../model/types'
 import './HierarchyLayout.css'
 
 export function HierarchyLayout({

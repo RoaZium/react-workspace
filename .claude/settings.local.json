@@ -3,7 +3,17 @@
     "allow": [
       "Bash(while read file)",
       "Bash(do sed -i '/^## [0-9]\\+\\. 참고 자료$/,/^---$/d; /^## 참고 자료$/,/^---$/d' \"$file\")",
-      "Bash(do sed -i '/^## [0-9]\\+\\. 참고 자료$/,/^$/d' \"$file\")"
+      "Bash(do sed -i '/^## [0-9]\\+\\. 참고 자료$/,/^$/d' \"$file\")",
+      "Bash(find:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(if not exist \"apps\\data-platform\\src\\widgets\" mkdir \"apps\\data-platform\\src\\widgets\")",
+      "Bash(if not exist \"apps\\data-platform\\src\\widgets\\hierarchy-layout\" mkdir \"apps\\data-platform\\src\\widgets\\hierarchy-layout\")",
+      "Bash(if not exist \"apps\\data-platform\\src\\widgets\\hierarchy-layout\\ui\" mkdir \"apps\\data-platform\\src\\widgets\\hierarchy-layout\\ui\")",
+      "Bash(if not exist \"apps\\data-platform\\src\\widgets\\hierarchy-layout\\model\" mkdir \"apps\\data-platform\\src\\widgets\\hierarchy-layout\\model\")",
+      "Bash(mkdir:*)",
+      "Bash(test:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []

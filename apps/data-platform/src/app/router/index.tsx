@@ -16,6 +16,7 @@ import { ThreeColumnLayout } from '@/pages/layout-gallery/demos/three-column'
 import { FourColumnLayout } from '@/pages/layout-gallery/demos/four-column'
 import { ThreeRowsLayout } from '@/pages/layout-gallery/demos/three-rows'
 import { SearchLayout } from '@/pages/layout-gallery/demos/search'
+import { HierarchyTest } from '@/pages/hierarchy-test'
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: 'layouts/search',
         element: <SearchLayout />,
+      },
+      {
+        path: 'hierarchy-test',
+        element: <HierarchyTest />,
       },
     ],
   },

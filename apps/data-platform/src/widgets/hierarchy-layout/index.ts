@@ -1,8 +1,9 @@
-export { HierarchyLayout } from './HierarchyLayout'
+// Public API
+export { HierarchyLayout } from './ui'
 export type {
   HierarchyItem,
   DatasourceItem,
   CategoryItem,
   ResourceItem,
   HierarchyLayoutProps,
-} from './types'
+} from './model'
