@@ -8,9 +8,10 @@ interface GridProps {
 }
 
 /**
- * Grid - 그리드 레이아웃
+ * Grid - Material Design 3 그리드 레이아웃
  *
  * 동일한 크기의 그리드 셀로 영역 분할
+ * MD3 spacing 가이드라인 적용
  *
  * @example
  * ```tsx
@@ -24,7 +25,7 @@ interface GridProps {
  */
 export function Grid({ children, columns = 4, gap = 2 }: GridProps) {
   const gapValue = typeof gap === 'string'
-    ? { small: 1, medium: 2, large: 3 }[gap]
+    ? { small: 2, medium: 3, large: 4 }[gap] // MD3 spacing: 16px, 24px, 32px
     : gap
 
   return (

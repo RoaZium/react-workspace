@@ -20,7 +20,7 @@ export function DataSources() {
   return (
     <PageLayout>
       <PageHeader
-        title="🗂️ DataSource 관리"
+        title="DataSource 관리"
         description="데이터 출처를 관리합니다"
       />
       <PageContent sx={{ p: 0 }}>

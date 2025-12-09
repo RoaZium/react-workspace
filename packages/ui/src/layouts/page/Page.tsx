@@ -12,9 +12,10 @@ interface PageHeaderProps {
 }
 
 /**
- * Page - 페이지 컨테이너
+ * Page - 페이지 컨테이너 (Material Design 3)
  *
  * 개별 페이지의 기본 구조를 제공하는 단순한 컨테이너
+ * MD3 spacing과 layout 가이드라인 적용
  */
 export function Page({ children }: PageProps) {
   return (
@@ -23,7 +24,8 @@ export function Page({ children }: PageProps) {
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
-        gap: 2,
+        gap: 3, // MD3 spacing: 24px
+        p: 3, // MD3 page padding
       }}
     >
       {children}
@@ -32,9 +34,10 @@ export function Page({ children }: PageProps) {
 }
 
 /**
- * PageHeader - 페이지 헤더
+ * PageHeader - 페이지 헤더 (Material Design 3)
  *
  * 타이틀, 설명, 액션 버튼을 포함하는 헤더
+ * MD3 Typography와 spacing 가이드라인 적용
  */
 export function PageHeader({ title, description, actions }: PageHeaderProps) {
   return (
@@ -44,10 +47,18 @@ export function PageHeader({ title, description, actions }: PageHeaderProps) {
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         flexShrink: 0,
+        mb: 1,
       }}
     >
-      <Box>
-        <Typography variant="h4" component="h1" fontWeight={700} gutterBottom>
+      <Box sx={{ flex: 1 }}>
+        <Typography
+          variant="h4"
+          component="h1"
+          sx={{
+            mb: description ? 1 : 0,
+            fontWeight: 600, // MD3 headings
+          }}
+        >
           {title}
         </Typography>
         {description && (
@@ -56,15 +67,20 @@ export function PageHeader({ title, description, actions }: PageHeaderProps) {
           </Typography>
         )}
       </Box>
-      {actions && <Box>{actions}</Box>}
+      {actions && (
+        <Box sx={{ ml: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
+          {actions}
+        </Box>
+      )}
     </Box>
   )
 }
 
 /**
- * PageContent - 페이지 콘텐츠 래퍼
+ * PageContent - 페이지 콘텐츠 래퍼 (Material Design 3)
  *
  * 페이지의 메인 콘텐츠를 감싸는 컨테이너
+ * MD3 spacing과 overflow 처리
  */
 export function PageContent({ children }: PageProps) {
   return (
@@ -72,6 +88,9 @@ export function PageContent({ children }: PageProps) {
       sx={{
         flex: 1,
         overflow: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 3, // MD3 content spacing
       }}
     >
       {children}

@@ -136,7 +136,7 @@ export function Resources() {
   return (
     <PageLayout>
       <PageHeader
-        title="📄 Resource 관리"
+        title="Resource 관리"
         description="데이터 리소스를 관리합니다"
       />
       <PageContent sx={{ p: 0 }}>

@@ -1,36 +1,40 @@
 import { PageLayout, PageHeader, PageContent, GridLayout, StatCard, Card } from '@workspace/ui'
 import { Typography, Stack, Box } from '@mui/material'
+import FolderOpenIcon from '@mui/icons-material/FolderOpen'
+import CategoryIcon from '@mui/icons-material/Category'
+import DescriptionIcon from '@mui/icons-material/Description'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
 export function Dashboard() {
   return (
     <PageLayout>
       <PageHeader
-        title="📊 데이터 허브"
+        title="데이터 허브"
         description="데이터 허브 전체 현황을 확인하세요"
       />
 
       <PageContent>
         <GridLayout columns={4} gap="medium">
           <StatCard
-            icon="🗂️"
+            icon={<FolderOpenIcon />}
             value="24"
             label="DataSource"
             trend={{ value: '+3', isPositive: true }}
           />
           <StatCard
-            icon="📁"
+            icon={<CategoryIcon />}
             value="156"
             label="Category"
             trend={{ value: '+12', isPositive: true }}
           />
           <StatCard
-            icon="📄"
+            icon={<DescriptionIcon />}
             value="1,247"
             label="Resource"
             trend={{ value: '+89', isPositive: true }}
           />
           <StatCard
-            icon="✅"
+            icon={<CheckCircleIcon />}
             value="96.8%"
             label="활성률"
             trend={{ value: '+1.2%', isPositive: true }}

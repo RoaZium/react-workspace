@@ -42,7 +42,7 @@ export function Categories() {
   return (
     <PageLayout>
       <PageHeader
-        title="📁 Category 관리"
+        title="Category 관리"
         description="데이터 카테고리를 관리합니다"
       />
       <PageContent sx={{ p: 0 }}>
